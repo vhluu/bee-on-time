@@ -1,32 +1,193 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+input {
+  outline: none;
+  border: 0;
+  background: transparent;
 }
 
-.App-header {
-  background-color: #282c34;
+a, a:hover, a:visited {
+  text-decoration: none;
+}
+
+.list-header {
+  display: flex;
+}
+
+.Intro {
+  background: #00A3E6;
+  background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(315deg, #3FC7FF 0%, #00A3E6 100%);
+  color: #fff;
   min-height: 100vh;
+  min-width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Main {
+  /* background: rgb(146,209,246); */
+  /* background: rgb(146,211,248);
+  background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(315deg, rgb(133,213,250) 0%, rgb(93,176,248) 100%); */
+  background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(50deg, #00A3E6 0%, #3FC7FF 100%);
+  color: #fff;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-size: 72px;
+  font-weight: normal;
+  margin: 0;
+}
+
+h2 {
+  font-size: 48px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.btn-intro {
+  font-size: 40px;
+  margin-left: 20px;
+}
+
+.btn-intro, .btn-intro:visited {
+  color: #fff;
+}
+
+header {
+  padding: 20px;
+  position: absolute;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 30px;
+  font-family: 'Nunito', sans-serif;
+  margin-left: 20px;
+}
+
+.add-form {
+  display: none;
+}
+
+main {
+  font-family: 'PT Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.list {
+  background:#fff;
+  color: #3FC7FF;
+  padding: 55px 25px;
+  /* box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+  border-radius: 5px; */
+  height: 450px;
+  width: 300px;
+  position: relative;
+}
+
+.list .item {
+  display: flex;
+  font-size: 20px;
+  padding: 5px 0;
+}
+
+.add-btn {
+  background: rgb(70, 194, 243);
+  color: #fff;
+  width: 30px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 50px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.time-wrapper {
+  background: rgb(159, 221, 248);
+  color: #fff;
+  height: 450px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 54px;
+}
+
+.time-input {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.time-input-wrapper {
+  position: relative;
+}
+
+.time-input select {
+  background: transparent;
+  font-size: 54px;
+  color: #fff;
+  border: 0;
+}
+
+/* .time-input input[type="number"] {
+  background: transparent;
+  font-size: 54px;
+  width: 75px;
+  color: #fff;
+} */
+
+#time-divider {
+  font-size: 54px;
+  color: #fff;
+}
+
+/* .time-input input[type="text"] {
+  font-size: 24px;
+  color: #fff;
+  width: 75px;
+}
+
+.time-input input::placeholder {
+  color: rgba(255,255,255,0.2);
+  opacity: 1;
+} */
+
+.time-input label {
+  position: absolute;
+  bottom: -15px;
+  left: 3px;
+  display: none;
+}
+
+.time-input label.active {
+  display: block;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
 }
