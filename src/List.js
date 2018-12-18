@@ -19,11 +19,8 @@ class List extends Component {
   }
 
   removeItem(id) {
-    console.log('removing');
-    console.log(id);
     const data = this.state.listItems.filter(item => item.id !== id);
-    console.log(data);
-    this.setState({ listItem: data });
+    this.setState({ listItems: data });
   }
 
   addItem() {
@@ -40,11 +37,11 @@ class List extends Component {
         <div className="add-btn" onClick={this.addItem.bind(this)}>+</div>
         <ul>
           <li className="list-header">
-            <div>What I need to do</div>
-            <div>It'll probably take</div>
+            <div>What I Need to Do</div>
+            <div>Estimated Time</div>
           </li>
           {
-            (this.state.listItems).map((item, idx) => <li key={idx} className="list-item">
+            (this.state.listItems).map((item) => <li key={item.id} className="list-item">
               {item.desc}
               <div onClick={this.editItem.bind(this, item.id)}>Edit</div>
               <div onClick={this.removeItem.bind(this, item.id)}>Remove</div>
