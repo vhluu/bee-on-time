@@ -46,7 +46,8 @@ class Main extends Component {
             <input type="number" name="estimated-min"/>
           </form>
           
-          <div className="list">
+          <List/>
+          {/* <div className="list">
             <div className="add-btn">+</div>
             <div className="item item-placeholder">
               <div className="item-edits">edit</div>
@@ -69,7 +70,7 @@ class Main extends Component {
               <div className="item-min">15</div>
               <div className="item-cancel">cancel</div>
             </div>
-          </div>
+          </div> */}
 
           <div className="time-wrapper">
             <div className="start-time">
