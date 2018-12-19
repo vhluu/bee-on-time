@@ -9,11 +9,8 @@ class List extends Component {
     super(props);
     this.state = {
       listItems: [{id: 1, desc: "Take a nap"}],
-      task: '',
-      hr: 0, 
-      min: 0,
       formEvent : '',
-      id: 0
+      id: 1
     }
     this.editItem = this.editItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
@@ -21,6 +18,9 @@ class List extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.myForm = React.createRef();
+    this.taskInput = React.createRef();
+    this.hrInput = React.createRef();
+    this.minInput = React.createRef();
   }
 
   editItem(id) {
@@ -57,10 +57,11 @@ class List extends Component {
     }
   }
 
+  handleChange(event, inputType) {
+    this.setState({ })
+  }
+
   handleSubmit(event) {
-    // so we have this.state.hrs, .min. and .task
-    // we need to determine if this is an edit or add
-    // we need to reset the values to their defaults
     event.preventDefault();
     this.myForm.current.style.display = "none";
 
@@ -68,8 +69,9 @@ class List extends Component {
       this.setState((state, props) => ({
         listItems: (state.listItems).concat([{
           id: this.state.id + 1, 
-          desc: this.state.task
-        }])
+          desc: this.taskInput.current.value
+        }]),
+        id: this.state.id + 1
       }));
     }
 
@@ -83,10 +85,10 @@ class List extends Component {
       <div className="list">
         <form className="list-form" ref={this.myForm} onSubmit={this.handleSubmit}>
           <label for="task">What do you need to do?</label>
-          <input type="text" name="task" value={this.state.task}/>
+          <input type="text" name="task" ref={this.taskInput}/>
           <label for="task">How long will it take?</label>
-          <input type="number" name="estimated-hrs" value={this.state.hrs}/>
-          <input type="number" name="estimated-min" value={this.state.min}/>
+          <input type="number" name="estimated-hrs" ref={this.hrInput}/>
+          <input type="number" name="estimated-min" ref={this.minInput}/>
           <input type="submit" value="Submit"></input>
         </form>
         <div className="add-btn" onClick={this.addItem.bind(this)}>+</div>
