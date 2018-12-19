@@ -117,11 +117,13 @@ class List extends Component {
           </li>
           {
             (this.state.listItems).map((item) => <li key={item.id} className="list-item">
-              {item.desc}
-              {item.hr} 
-              {item.min}
-              <div onClick={this.editItem.bind(this, item.id)}>Edit</div>
-              <div onClick={this.removeItem.bind(this, item.id)}>Remove</div>
+              <div>
+                <div className="list-item-desc">{item.desc}</div>
+                <div>{item.hr}</div>
+                <div>{item.min}</div>
+                <div onClick={this.editItem.bind(this, item.id)}>*</div>
+                <div onClick={this.removeItem.bind(this, item.id)}>X</div>
+              </div>
             </li>)
           }
         </ul>

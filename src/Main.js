@@ -38,40 +38,6 @@ class Main extends Component {
           </div>
         </header>
         <main>
-          <form className="add-form">
-            <label for="task">What do you need to do?</label>
-            <input type="text" name="task"/>
-            <label for="task">How long will it take?</label>
-            <input type="number" name="estimated-hrs"/>
-            <input type="number" name="estimated-min"/>
-          </form>
-          
-          <List/>
-          {/* <div className="list">
-            <div className="add-btn">+</div>
-            <div className="item item-placeholder">
-              <div className="item-edits">edit</div>
-              <div className="item-desc">Take a nap</div>
-              <div className="item-hrs">1</div>
-              <div className="item-min"></div>
-              <div className="item-cancel">cancel</div>
-            </div>
-            <div className="item item-placeholder">
-              <div className="item-edits">edit</div>
-              <div className="item-desc">Shower</div>
-              <div className="item-hrs"></div>
-              <div className="item-min">30</div>
-              <div className="item-cancel">cancel</div>
-            </div>
-            <div className="item item-placeholder">
-              <div className="item-edits">edit</div>
-              <div className="item-desc">Change clothes</div>
-              <div className="item-hrs"></div>
-              <div className="item-min">15</div>
-              <div className="item-cancel">cancel</div>
-            </div>
-          </div> */}
-
           <div className="time-wrapper">
             <div className="start-time">
               2:15 PM
@@ -80,6 +46,8 @@ class Main extends Component {
               3:00 PM
             </div>
           </div>
+
+          <List/>
         </main>
         
       </div>
