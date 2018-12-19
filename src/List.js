@@ -8,7 +8,7 @@ class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listItems: [{id: 1, desc: "Take a nap"}],
+      listItems: [{id: 1, desc: "Take a nap", hr: 0, min: 30}],
       formEvent : '',
       id: 1
     }
@@ -47,29 +47,22 @@ class List extends Component {
     this.setState({ formEvent: type });
     this.myForm.current.style.display = "block";
 
-    if (type == 'add') {
-      
-    }
-
-    else if (type == 'edit') {
-      // retrieve the list item's 
+    if (type == 'edit') {
+      // display default values to edit
 
     }
-  }
-
-  handleChange(event, inputType) {
-    this.setState({ })
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.myForm.current.style.display = "none";
 
     if (this.state.formEvent == 'add') {
       this.setState((state, props) => ({
         listItems: (state.listItems).concat([{
           id: this.state.id + 1, 
-          desc: this.taskInput.current.value
+          desc: this.taskInput.current.value,
+          hr: this.hrInput.current.value,
+          min: this.minInput.current.value
         }]),
         id: this.state.id + 1
       }));
@@ -78,6 +71,8 @@ class List extends Component {
     else if (this.state.formEvent == 'edit') {
 
     }
+
+    this.myForm.current.style.display = "none";
   }
 
   render() {
@@ -100,6 +95,8 @@ class List extends Component {
           {
             (this.state.listItems).map((item) => <li key={item.id} className="list-item">
               {item.desc}
+              {item.hr} 
+              {item.min}
               <div onClick={this.editItem.bind(this, item.id)}>Edit</div>
               <div onClick={this.removeItem.bind(this, item.id)}>Remove</div>
             </li>)
