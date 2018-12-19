@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Sans');
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600');
 
 * {
   box-sizing: border-box;
@@ -78,27 +78,6 @@ header {
   margin-left: 20px;
 }
 
-.add-form {
-  display: none;
-}
-
-.list-form {
-  display: none;
-  position: absolute;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  width: 700px;
-  height: 450px;
-  padding: 40px;
-  background: #fff;
-}
-
-.list-form input {
-  color: #3FC7FF;
-}
-
-
 main {
   font-family: 'PT Sans', sans-serif;
   display: flex;
@@ -108,6 +87,7 @@ main {
   height: 100vh;
 }
 
+/* List */
 .list {
   background:#fff;
   color: #3FC7FF;
@@ -115,14 +95,51 @@ main {
   /* box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
   border-radius: 5px; */
   height: 450px;
-  width: 300px;
+  width: 400px;
   position: relative;
 }
 
-.list .item {
+.list-header {
   display: flex;
-  font-size: 20px;
-  padding: 5px 0;
+  font-weight: 700;
+}
+
+.list-header > div:first-child {
+  flex-basis: 60%;
+}
+
+.list ul {
+  padding: 0 0 0 5px;
+}
+
+.list-item div {
+  display: flex; 
+}
+
+.list-item-desc {
+  flex-basis: 60%;
+  max-width: 60%;
+}
+
+.list-item div > :not(.list-item-desc) {
+  flex-basis: 10%;
+  max-width: 10%;
+}
+
+.list-form {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: -300px;
+  width: 700px;
+  height: 450px;
+  padding: 40px;
+  background: #fff;
+}
+
+.list-form input {
+  color: #3FC7FF;
 }
 
 .add-btn {
@@ -137,11 +154,12 @@ main {
   right: 20px;
 }
 
+/* Time Input on Intro Page */
 .time-wrapper {
   background: rgb(159, 221, 248);
   color: #fff;
   height: 450px;
-  width: 400px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -166,28 +184,10 @@ main {
   border: 0;
 }
 
-/* .time-input input[type="number"] {
-  background: transparent;
-  font-size: 54px;
-  width: 75px;
-  color: #fff;
-} */
-
 #time-divider {
   font-size: 54px;
   color: #fff;
 }
-
-/* .time-input input[type="text"] {
-  font-size: 24px;
-  color: #fff;
-  width: 75px;
-}
-
-.time-input input::placeholder {
-  color: rgba(255,255,255,0.2);
-  opacity: 1;
-} */
 
 .time-input label {
   position: absolute;
