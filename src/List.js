@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import './App.css';
 
 class List extends Component {
-  // function to add item -> create ListItem
-  // function to edit item 
-  // function to remove item
   constructor(props) {
     super(props);
     this.state = {
-      listItems: [{id: 1, desc: "Take a nap", hr: 0, min: 30}],
-      formEvent : '',
-      id: 1
+      listItems: [{id: 1, desc: "Take a nap", hr: 0, min: 30}], // the list data
+      formEvent: '', // string w/ value 'add' or 'remove' to determine user action in form
+      formId: 0, // the id of the item we are currently editing in the form
+      id: 1, // the last used id. to determine the next id
+      startTime: '', 
+      endTime: '', 
+      totalHrs: 0, 
+      totalMin: 0
     }
     this.editItem = this.editItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
@@ -24,7 +26,6 @@ class List extends Component {
   }
 
   editItem(id) {
-    console.log('editing');
     this.openForm('edit', id);
   }
 
@@ -34,11 +35,6 @@ class List extends Component {
   }
 
   addItem() {
-    // show form
-    // on form submit, add an item
-    // this.setState((state, props) => ({
-    //   listItems: (state.listItems).concat([{id: 2, desc: "Eat pie"}])
-    // }));
     this.openForm('add', 0);
   }
 
@@ -49,30 +45,57 @@ class List extends Component {
 
     if (type == 'edit') {
       // display default values to edit
-
+      this.setState({ formId: id });
+      const currentItem = (this.state.listItems.filter(item => item.id == id));
+      if (currentItem && currentItem.length > 0) {
+        this.taskInput.current.value = currentItem[0].desc;
+        this.hrInput.current.value = currentItem[0].hr;
+        this.minInput.current.value = currentItem[0].min;
+      }
     }
   }
 
+  // submit of form
   handleSubmit(event) {
     event.preventDefault();
+    const newDesc = this.taskInput.current.value;
+    const newHr = this.hrInput.current.value;
+    const newMin = this.minInput.current.value;
 
-    if (this.state.formEvent == 'add') {
+    if (this.state.formEvent == 'add') { // add new item to list
       this.setState((state, props) => ({
         listItems: (state.listItems).concat([{
           id: this.state.id + 1, 
-          desc: this.taskInput.current.value,
-          hr: this.hrInput.current.value,
-          min: this.minInput.current.value
+          desc: newDesc,
+          hr: newHr,
+          min: newMin
         }]),
         id: this.state.id + 1
       }));
     }
 
-    else if (this.state.formEvent == 'edit') {
+    else if (this.state.formEvent == 'edit') { // edit current list item
+      const currList = this.state.listItems
+      for (var i = 0; i < currList.length; i++) {
+        if (currList[i].id == this.state.formId) {
+          currList[i] = {
+            id: currList[i].id,
+            desc: newDesc,
+            hr: newHr,
+            min: newMin
+          }
+          this.setState({ listItem: currList });
+          break;
+        }
+      }
 
     }
 
+    // hide and clear form
     this.myForm.current.style.display = "none";
+    this.taskInput.current.value = '';
+    this.hrInput.current.value = '';
+    this.minInput.current.value = '';
   }
 
   render() {
