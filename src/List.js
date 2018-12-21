@@ -5,7 +5,8 @@ class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listItems: [{id: 1, desc: "Take a nap", hr: 0, min: 30}], // the list data
+      // listItems: [{id: 1, desc: "Take a nap", hr: 0, min: 30}],
+      listItems: [], // the list data
       formEvent: '', // string w/ value 'add' or 'remove' to determine user action in form
       formId: 0, // the id of the item we are currently editing in the form
       id: 1, // the last used id. to determine the next id
@@ -31,7 +32,7 @@ class List extends Component {
 
   removeItem(id) {
     const data = this.state.listItems.filter(item => item.id !== id);
-    this.setState({ listItems: data });
+    this.setState({ listItem: data }, () => { this.props.updateList(data) });
   }
 
   addItem() {
@@ -59,11 +60,11 @@ class List extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const newDesc = this.taskInput.current.value;
-    const newHr = this.hrInput.current.value;
-    const newMin = this.minInput.current.value;
+    const newHr = parseInt(this.hrInput.current.value);
+    const newMin = parseInt(this.minInput.current.value);
 
     if (this.state.formEvent == 'add') { // add new item to list
-      this.setState((state, props) => ({
+      this.setState(((state, props) => ({
         listItems: (state.listItems).concat([{
           id: this.state.id + 1, 
           desc: newDesc,
@@ -71,7 +72,10 @@ class List extends Component {
           min: newMin
         }]),
         id: this.state.id + 1
-      }));
+      })), () => { // callback function
+        this.props.updateList(this.state.listItems);
+      });
+      
     }
 
     else if (this.state.formEvent == 'edit') { // edit current list item
@@ -84,7 +88,7 @@ class List extends Component {
             hr: newHr,
             min: newMin
           }
-          this.setState({ listItem: currList });
+          this.setState({ listItem: currList }, () => { this.props.updateList(currList) });
           break;
         }
       }
