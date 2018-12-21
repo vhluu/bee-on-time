@@ -80,11 +80,7 @@ header {
 
 main {
   font-family: 'PT Sans', sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  padding-top: 100px;
 }
 
 /* List */
@@ -95,8 +91,10 @@ main {
   /* box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
   border-radius: 5px; */
   height: 450px;
-  width: 400px;
+  width: 80%;
+  max-width: 400px;
   position: relative;
+  margin: 0 auto;
 }
 
 .list-header {
@@ -158,19 +156,21 @@ main {
 .time-wrapper {
   background: rgb(159, 221, 248);
   color: #fff;
-  height: 450px;
-  width: 300px;
+  height: 200px;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
+  font-size: 32px;
+  margin: 0 auto;
+  max-width: 400px;
 }
 
 .time-wrapper svg {
   margin-right: 10px;
   width: 70px;
-  height: 70px;
+  height: 55px;
 }
 
 .start-time, .end-time {
@@ -178,6 +178,9 @@ main {
   flex-direction: row;
   align-items: center;
   margin-bottom: 20px;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  justify-content: space-between;
 }
 
 .time-input {
@@ -220,4 +223,35 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+
+@media only screen and (min-width: 768px) {
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 0;
+  }
+
+  .list {
+    width: 400px;
+    margin: 0;
+  }
+
+  .time-wrapper {
+    width: 350px;
+    margin: 0;
+    max-width: 450px;
+    height: 450px;
+    font-size: 40px;
+  }
+
+  .time-wrapper svg {
+    margin-right: 10px;
+    width: 70px;
+    height: 70px;
+  }
 }
