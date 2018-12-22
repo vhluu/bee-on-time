@@ -31,6 +31,16 @@ a, a:hover, a:visited {
   justify-content: center;
 }
 
+.Intro h1 {
+  display: inline-block;
+}
+
+.intro-bee {
+  margin-left: 15px;
+  width: 100px;
+  height: 116px;
+}
+
 .Main {
   /* background: rgb(146,209,246); */
   /* background: rgb(146,211,248);

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import List from './List';
 import {
   Route,
-  NavLink,
   HashRouter
 } from "react-router-dom";
 import Intro from './Intro';

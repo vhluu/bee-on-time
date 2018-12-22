@@ -46,9 +46,9 @@ class Main extends Component {
     // calculate new start minute
     if (start.min < min) {
       start.min = (start.min + 60) - min;
-      if (start.hr == 1) {
+      if (start.hr === 1) {
         start.hr = 12;
-        start.type = ((start.type == 'PM') ? 'AM' : 'PM');
+        start.type = ((start.type === 'PM') ? 'AM' : 'PM');
       }
       else {
         start.hr--;
@@ -61,13 +61,13 @@ class Main extends Component {
     // calculate new start hr 
     if (start.hr < hr) {
       start.hr = start.hr - hr + 12;
-      start.type = ((start.type == 'PM') ? 'AM' : 'PM');
+      start.type = ((start.type === 'PM') ? 'AM' : 'PM');
     }
     else {
       start.hr -= hr;
       if (start.hr < 1) {
         start.hr += 12;
-        if (start.hr < 12 && start.hr > end.hr) start.type = ((start.type == 'PM') ? 'AM' : 'PM');
+        if (start.hr < 12 && start.hr > end.hr) start.type = ((start.type === 'PM') ? 'AM' : 'PM');
       }
     }
 

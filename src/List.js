@@ -44,10 +44,10 @@ class List extends Component {
     this.setState({ formEvent: type });
     this.myForm.current.style.display = "block";
 
-    if (type == 'edit') {
+    if (type === 'edit') {
       // display default values to edit
       this.setState({ formId: id });
-      const currentItem = (this.state.listItems.filter(item => item.id == id));
+      const currentItem = (this.state.listItems.filter(item => item.id === id));
       if (currentItem && currentItem.length > 0) {
         this.taskInput.current.value = currentItem[0].desc;
         this.hrInput.current.value = currentItem[0].hr;
@@ -63,7 +63,7 @@ class List extends Component {
     const newHr = parseInt(this.hrInput.current.value);
     const newMin = parseInt(this.minInput.current.value);
 
-    if (this.state.formEvent == 'add') { // add new item to list
+    if (this.state.formEvent === 'add') { // add new item to list
       this.setState(((state, props) => ({
         listItems: (state.listItems).concat([{
           id: this.state.id + 1, 
@@ -78,10 +78,10 @@ class List extends Component {
       
     }
 
-    else if (this.state.formEvent == 'edit') { // edit current list item
+    else if (this.state.formEvent === 'edit') { // edit current list item
       const currList = this.state.listItems
       for (var i = 0; i < currList.length; i++) {
-        if (currList[i].id == this.state.formId) {
+        if (currList[i].id === this.state.formId) {
           currList[i] = {
             id: currList[i].id,
             desc: newDesc,
@@ -106,9 +106,9 @@ class List extends Component {
     return (
       <div className="list">
         <form className="list-form" ref={this.myForm} onSubmit={this.handleSubmit}>
-          <label for="task">What do you need to do?</label>
+          <label htmlFor="task">What do you need to do?</label>
           <input type="text" name="task" ref={this.taskInput}/>
-          <label for="task">How long will it take?</label>
+          <label htmlFor="task">How long will it take?</label>
           <input type="number" name="estimated-hrs" ref={this.hrInput}/>
           <input type="number" name="estimated-min" ref={this.minInput}/>
           <input type="submit" value="Submit"></input>
