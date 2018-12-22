@@ -21,14 +21,14 @@ class Main extends Component {
     // get the new hours and minutes
     var start, end, hr, min;
     start = {
-      hr: 3,
+      hr: 6,
       min: 0,
-      type: 'PM'
+      type: 'AM'
     };
     end = {
-      hr: 3,
+      hr: 6,
       min: 0,
-      type: 'PM'
+      type: 'AM'
     };
     hr = 0; min = 0;
     const list = this.state.currList;
