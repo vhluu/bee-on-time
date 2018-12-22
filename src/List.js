@@ -15,9 +15,9 @@ class List extends Component {
       totalHrs: 0, 
       totalMin: 0
     }
-    this.editItem = this.editItem.bind(this);
-    this.removeItem = this.removeItem.bind(this);
+
     this.openForm = this.openForm.bind(this);
+    this.closeForm = this.closeForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.myForm = React.createRef();
@@ -31,8 +31,11 @@ class List extends Component {
   }
 
   removeItem(id) {
-    const data = this.state.listItems.filter(item => item.id !== id);
-    this.setState({ listItem: data }, () => { this.props.updateList(data) });
+    this.setState((state, props) => ({
+      listItems: state.listItems.filter(item => item.id !== id)
+    }), () => {
+      console.log(this.state.listItem); this.props.updateList(this.state.listItems);
+    })
   }
 
   addItem() {
@@ -54,6 +57,14 @@ class List extends Component {
         this.minInput.current.value = currentItem[0].min;
       }
     }
+  }
+
+  closeForm() {
+    // hide and clear form
+    this.myForm.current.style.display = "none";
+    this.taskInput.current.value = '';
+    this.hrInput.current.value = '';
+    this.minInput.current.value = '';
   }
 
   // submit of form
@@ -96,16 +107,14 @@ class List extends Component {
     }
 
     // hide and clear form
-    this.myForm.current.style.display = "none";
-    this.taskInput.current.value = '';
-    this.hrInput.current.value = '';
-    this.minInput.current.value = '';
+    this.closeForm();
   }
 
   render() {
     return (
       <div className="list">
         <form className="list-form" ref={this.myForm} onSubmit={this.handleSubmit}>
+          <div onClick={this.closeForm}>X</div>
           <label htmlFor="task">What do you need to do?</label>
           <input type="text" name="task" ref={this.taskInput}/>
           <label htmlFor="task">How long will it take?</label>
@@ -126,7 +135,7 @@ class List extends Component {
                 <div>{item.hr}</div>
                 <div>{item.min}</div>
                 <div onClick={this.editItem.bind(this, item.id)}>*</div>
-                <div onClick={this.removeItem.bind(this, item.id)}>X</div>
+                <div onClick={this.removeItem.bind(this, item.id)}>Cancel</div>
               </div>
             </li>)
           }
