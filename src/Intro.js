@@ -6,9 +6,17 @@ class Intro extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navigate: false
+      navigate: false,
+      timeInput: {
+        hr: 1,
+        min: 0,
+        type: 'PM'
+      }
     } 
     this.goToMain = this.goToMain.bind(this);
+    this.hrChange = this.hrChange.bind(this);
+    this.minChange = this.minChange.bind(this);
+    this.periodChange = this.periodChange.bind(this);
   }
 
   goToMain() {
@@ -17,12 +25,39 @@ class Intro extends Component {
     }));
   }
 
+  hrChange(event) {
+    this.setState({
+      timeInput: {
+        ...this.state.timeInput,
+        hr: parseInt(event.target.value),
+      },
+    });
+  }
+
+  minChange(event) {
+    this.setState({
+      timeInput: {
+        ...this.state.timeInput,
+        min: parseInt(event.target.value),
+      },
+    });
+  }
+
+  periodChange(event) {
+    this.setState({
+      timeInput: {
+        ...this.state.timeInput,
+        type: event.target.value,
+      },
+    });
+  }
+
   render() {
     var hrOptions = []; // generate hr options for dropdown
     for (var i = 0; i < 12; i++) {
       hrOptions.push({
         text: '' + Math.floor((i+1)/10) + ((i+1)%10),
-        value: i
+        value: i+1
       });
     }
     
@@ -35,7 +70,7 @@ class Intro extends Component {
     }
     return (
       <div>
-        { this.state.navigate && <Main/> }
+        { this.state.navigate && <Main userTime={this.state.timeInput}/> /* navigate to main page */} 
         { !this.state.navigate && <div className="Intro">
           <div>
             <h1>Don't be late,</h1>
@@ -70,7 +105,7 @@ class Intro extends Component {
           <div className="time-input">
             <div className="time-input-wrapper">
               <label htmlFor="hr">HR</label>
-              <select name="hr">
+              <select name="hr" onChange={this.hrChange}>
                 { 
                   (hrOptions).map((opt) => <option key={opt.value} value={opt.value}>{opt.text}</option>)
                 }
@@ -79,13 +114,13 @@ class Intro extends Component {
             <span id="time-divider">:</span>
             <div className="time-input-wrapper">
               <label htmlFor="min">MIN</label>
-              <select name="min">
+              <select name="min" onChange={this.minChange}>
                 { 
                   (minOptions).map((opt) => <option key={opt.value} value={opt.value}>{opt.text}</option>)
                 }
               </select>
             </div>
-            <select name="period">
+            <select name="period" onChange={this.periodChange}>
               <option value="PM">PM</option>
               <option value="AM">AM</option>
             </select>
