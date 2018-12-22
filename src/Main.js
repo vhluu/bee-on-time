@@ -20,16 +20,9 @@ class Main extends Component {
   render() {
     // get the new hours and minutes
     var start, end, hr, min;
-    start = {
-      hr: 6,
-      min: 0,
-      type: 'AM'
-    };
-    end = {
-      hr: 6,
-      min: 0,
-      type: 'AM'
-    };
+    console.log(this.props.userTime);
+    start = { ...this.props.userTime };
+    end = { ...this.props.userTime };
     hr = 0; min = 0;
     const list = this.state.currList;
     for (var i = 0; i < list.length; i++) {
