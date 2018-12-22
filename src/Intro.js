@@ -4,6 +4,21 @@ import List from './List'
 
 class Intro extends Component {
   render() {
+    var hrOptions = [];
+    for (var i = 0; i < 12; i++) {
+      hrOptions.push({
+        text: '' + Math.floor((i+1)/10) + ((i+1)%10),
+        value: i
+      });
+    }
+    
+    var minOptions = [];
+    for (var i = 0; i < 60; i++) {
+      minOptions.push({
+        text: '' + Math.floor((i)/10) + ((i)%10),
+        value: i
+      });
+    }
     return (
       <div className="Intro">
         <div><h1>Don't be late,</h1>
@@ -12,35 +27,18 @@ class Intro extends Component {
           <div class="time-input-wrapper">
             <label for="hr">HR</label>
             <select name="hr">
-              <option value="00">00</option>
-              <option value="00">01</option>
-              <option value="00">02</option>
-              <option value="00">03</option>
-              <option value="00">04</option>
-              <option value="00">05</option>
-              <option value="00">06</option>
-              <option value="00">07</option>
-              <option value="00">08</option>
-              <option value="00">09</option>
-              <option value="00">10</option>
-              <option value="00">11</option>
-              <option value="00">12</option>
+              { 
+                (hrOptions).map((opt) => <option value={opt.value}>{opt.text}</option>)
+              }
             </select>
           </div>
           <span id="time-divider">:</span>
           <div class="time-input-wrapper">
             <label for="min">MIN</label>
             <select name="min">
-              <option value="00">01</option>
-              <option value="00">02</option>
-              <option value="00">03</option>
-              <option value="00">04</option>
-              <option value="00">05</option>
-              <option value="00">06</option>
-              <option value="00">07</option>
-              <option value="00">08</option>
-              <option value="00">09</option>
-              <option value="00">10</option>
+              { 
+                (minOptions).map((opt) => <option value={opt.value}>{opt.text}</option>)
+              }
             </select>
           </div>
           <select name="period">
