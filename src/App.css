@@ -45,7 +45,8 @@ a, a:hover, a:visited {
   /* background: rgb(146,209,246); */
   /* background: rgb(146,211,248);
   background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(315deg, rgb(133,213,250) 0%, rgb(93,176,248) 100%); */
-  background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(50deg, #00A3E6 0%, #3FC7FF 100%);
+  /* background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(50deg, #00A3E6 0%, #3FC7FF 100%); */
+  background: url(/clouds-bg.png) bottom -17% left 21%/ 114% no-repeat, linear-gradient(#a4e5fc, #a1c4fd);
   color: #fff;
   min-height: 100vh;
   min-width: 100vw;
@@ -93,14 +94,20 @@ main {
   padding-top: 100px;
 }
 
+.main-wrapper {
+  display: flex;
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px #a6dcf5;
+  background: #fff;
+}
+
 /* List */
 .list {
-  background:#fff;
   color: #3FC7FF;
   padding: 55px 25px;
   /* box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
   border-radius: 5px; */
-  height: 450px;
+  height: 500px;
   width: 80%;
   max-width: 400px;
   position: relative;
@@ -110,6 +117,9 @@ main {
 .list-header {
   display: flex;
   font-weight: 700;
+  color: #b0bec5;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .list-header > div:first-child {
@@ -117,7 +127,7 @@ main {
 }
 
 .list ul {
-  padding: 0 0 0 5px;
+  padding: 20px 0 0 5px;
 }
 
 .list-item div {
@@ -151,20 +161,21 @@ main {
 }
 
 .add-btn {
-  background: rgb(70, 194, 243);
+  background: #a4e3fc;
   color: #fff;
-  width: 30px;
+  width: 40px;
   text-align: center;
-  padding: 5px;
   border-radius: 50px;
   position: absolute;
   top: 20px;
   right: 20px;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
 }
 
-/* Time Input on Intro Page */
+/* Time on Main Page */
 .time-wrapper {
-  background: rgb(159, 221, 248);
   color: #fff;
   height: 200px;
   width: 80%;
@@ -192,6 +203,15 @@ main {
   font-family: 'Nunito', sans-serif;
   justify-content: space-between;
 }
+
+.start-time {
+  color: #BAF1BE;
+}
+
+.end-time {
+  color: #FF8A8A;
+}
+
 
 .time-title {
   font-size: 15px;
@@ -260,7 +280,7 @@ input[type="number"] {
     width: 350px;
     margin: 0;
     max-width: 450px;
-    height: 450px;
+    height: 500px;
     font-size: 40px;
   }
 
