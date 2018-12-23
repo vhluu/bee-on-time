@@ -125,7 +125,7 @@ class Intro extends Component {
               <option value="AM">AM</option>
             </select>
           </div>
-          <a className="btn-intro" onClick={this.goToMain}>GET STARTED</a>
+          <a className="btn-intro clickable" onClick={this.goToMain}>GET STARTED</a>
         </div> }   
       </div>
     );

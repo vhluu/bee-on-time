@@ -45,7 +45,7 @@ class List extends Component {
   openForm(type, id) {
     // add some sort of animation
     this.setState({ formEvent: type });
-    this.myForm.current.style.display = "block";
+    this.myForm.current.style.display = "flex";
 
     if (type === 'edit') {
       // display default values to edit
@@ -114,15 +114,20 @@ class List extends Component {
     return (
       <div className="list">
         <form className="list-form" ref={this.myForm} onSubmit={this.handleSubmit}>
-          <div onClick={this.closeForm}>X</div>
+          <div className="clickable add-btn" onClick={this.closeForm}>x</div>
+          <h3>Add a new task</h3>
           <label htmlFor="task">What do you need to do?</label>
-          <input type="text" name="task" ref={this.taskInput}/>
-          <label htmlFor="task">How long will it take?</label>
-          <input type="number" name="estimated-hrs" ref={this.hrInput}/>
-          <input type="number" name="estimated-min" ref={this.minInput}/>
-          <input type="submit" value="Submit"></input>
+          <input type="text" name="task" ref={this.taskInput} placeholder="Pack lunch"/>
+          <label>How long will it take?</label>
+          <div>
+            <input type="number" name="estimated-hrs" ref={this.hrInput} placeholder="0"/> 
+            <span>hr(s)</span>
+            <input type="number" id="estimated-min" name="estimated-min" ref={this.minInput} placeholder="0"/>
+            <span>mins</span>
+          </div>
+          <input type="submit" className="clickable" value="Submit"></input>
         </form>
-        <div className="add-btn" onClick={this.addItem.bind(this)}>+</div>
+        <div className="add-btn clickable" onClick={this.addItem.bind(this)}>+</div>
         <ul>
           <li className="list-header">
             <div>What I Need to Do</div>
