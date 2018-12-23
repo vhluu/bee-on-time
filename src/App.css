@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,600');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
 
 * {
   box-sizing: border-box;
@@ -13,10 +14,6 @@ input {
 
 a, a:hover, a:visited {
   text-decoration: none;
-}
-
-.list-header {
-  display: flex;
 }
 
 .Intro {
@@ -90,7 +87,7 @@ header {
 }
 
 main {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   padding-top: 100px;
 }
 
@@ -99,6 +96,10 @@ main {
   border-radius: 15px;
   box-shadow: 3px 3px 10px #a6dcf5;
   background: #fff;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 /* List */
@@ -119,7 +120,7 @@ main {
   font-weight: 700;
   color: #b0bec5;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-family: 'Nunito', sans-serif;
 }
 
 .list-header > div:first-child {
@@ -154,11 +155,54 @@ main {
   height: 450px;
   padding: 40px;
   background: #fff;
+  border-radius: 15px;
+  flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  color: rgb(163,202,251);
 }
 
 .list-form input {
-  color: #3FC7FF;
+  border-bottom: 2px solid rgb(163,202,251,0.3);
+  max-width: 300px;
+  padding: 5px 0;
+  font-size: 20px;
+  color: rgb(163,202,251);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  margin-bottom: 20px;
 }
+
+.list-form input[type="number"] {
+  max-width: 40px;
+}
+
+.list-form input::placeholder {
+  color: rgb(163,202,251,0.3);
+}
+
+.list-form input[type="submit"] {
+  background: rgb(163,202,251);
+  color: #fff;
+  border-radius: 50px;
+  width: 110px;
+  margin-top: 40px;
+}
+
+.list-form span {
+  font-weight: 500;
+}
+
+.list-form h3 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: 'Nunito', sans-serif;
+}
+
+#estimated-min {
+  margin-left: 15px;
+}
+
 
 .add-btn {
   background: #a4e3fc;
@@ -211,7 +255,6 @@ main {
 .end-time {
   color: #FF8A8A;
 }
-
 
 .time-title {
   font-size: 15px;
