@@ -18,7 +18,7 @@ a, a:hover, a:visited {
 
 .Intro {
   background: linear-gradient(#5bd3ff, #abcafd);
-  color: #fff;
+  color: rgba(255,255,255,0.8);
   min-height: 100vh;
   min-width: 100vw;
   display: flex;
@@ -31,6 +31,7 @@ a, a:hover, a:visited {
 .Intro h1 {
   display: inline-block;
   font-weight: 600;
+  color: rgba(0,0,0,0.3);
 }
 
 .intro-bee {
@@ -44,7 +45,7 @@ a, a:hover, a:visited {
   /* background: rgb(146,211,248);
   background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(315deg, rgb(133,213,250) 0%, rgb(93,176,248) 100%); */
   /* background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(50deg, #00A3E6 0%, #3FC7FF 100%); */
-  background: url(/clouds-bg.png) bottom -17% left 21%/ 114% no-repeat, linear-gradient(#a4e5fc, #a1c4fd);
+  background: url(/clouds-bg.png) bottom -17% left 21%/ 114% no-repeat, linear-gradient(#9ae2fd, #a1c4fd);
   color: #fff;
   min-height: 100vh;
   min-width: 100vw;
@@ -66,7 +67,7 @@ h2 {
   background: #fff;
   border-radius: 50px;
   width: 150px;
-  padding: 5px;
+  padding: 8px;
   font-size: 20px;
   font-family: 'Roboto';
   font-weight: 500;
@@ -92,6 +93,7 @@ header {
   font-size: 30px;
   font-family: 'Nunito', sans-serif;
   margin-left: 20px;
+  color: rgba(0,0,0,0.3);
 }
 
 main {
@@ -103,7 +105,7 @@ main {
   display: flex;
   border-radius: 15px;
   box-shadow: 3px 3px 10px #a6dcf5;
-  background: #fff;
+  background: rgba(255,255,255,0.95);
 }
 
 .clickable {
@@ -114,8 +116,6 @@ main {
 .list {
   color: #3FC7FF;
   padding: 55px 25px;
-  /* box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
-  border-radius: 5px; */
   height: 500px;
   width: 80%;
   max-width: 400px;
@@ -129,6 +129,8 @@ main {
   color: #b0bec5;
   text-transform: uppercase;
   font-family: 'Nunito', sans-serif;
+  color: rgb(163,202,251);
+  color: #304A6E;
 }
 
 .list-header > div:first-child {
@@ -137,6 +139,13 @@ main {
 
 .list ul {
   padding: 20px 0 0 5px;
+}
+
+.list-item {
+  font-size: 20px;
+  color: #304a6ea3;
+  font-weight: 600;
+  margin-top: 5px;
 }
 
 .list-item div {
@@ -159,14 +168,14 @@ main {
   z-index: 100;
   top: 0;
   left: -350px;
-  width: 750px;
+  width: 800px;
   height: 450px;
   padding: 40px;
   background: #fff;
   border-radius: 15px;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
-  color: rgb(163,202,251);
+  color: #86b9f9;
 }
 
 .list-form input {
@@ -257,7 +266,7 @@ main {
 }
 
 .start-time {
-  color: #BAF1BE;
+  color: #85e4b1;
 }
 
 .end-time {
@@ -323,7 +332,8 @@ input[type="number"] {
   }
 
   .list {
-    width: 400px;
+    width: 450px;
+    max-width: 450px;
     margin: 0;
   }
 
