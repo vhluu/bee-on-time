@@ -18,7 +18,7 @@ a, a:hover, a:visited {
 
 .Intro {
   background: linear-gradient(#5bd3ff, #abcafd);
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.9);
   min-height: 100vh;
   min-width: 100vw;
   display: flex;
@@ -142,7 +142,7 @@ main {
 }
 
 .list-item {
-  font-size: 20px;
+  font-size: 17px;
   color: #304a6ea3;
   font-weight: 600;
   margin-top: 5px;
@@ -323,7 +323,8 @@ input[type="number"] {
 .main-desc {
   font-size: 15px;
   padding: 0 20px 40px 40px;
-  color: #4d6484
+  color: #4d6484;
+  line-height: 1.5;
 }
 
 .main-desc span {
