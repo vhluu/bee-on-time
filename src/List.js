@@ -117,12 +117,12 @@ class List extends Component {
           <div className="clickable add-btn" onClick={this.closeForm}>x</div>
           <h3>Add a new task</h3>
           <label htmlFor="task">What do you need to do?</label>
-          <input type="text" name="task" ref={this.taskInput} placeholder="Pack lunch"/>
+          <input type="text" name="task" ref={this.taskInput} required maxlength="50" placeholder="Pack lunch"/>
           <label>How long will it take?</label>
           <div>
-            <input type="number" name="estimated-hrs" ref={this.hrInput} placeholder="0"/> 
+            <input type="number" name="estimated-hrs" ref={this.hrInput} required min="0" placeholder="0"/> 
             <span>hr(s)</span>
-            <input type="number" id="estimated-min" name="estimated-min" ref={this.minInput} placeholder="0"/>
+            <input type="number" id="estimated-min" name="estimated-min" required min="0" ref={this.minInput} placeholder="0"/>
             <span>mins</span>
           </div>
           <input type="submit" className="clickable" value="Submit"></input>
