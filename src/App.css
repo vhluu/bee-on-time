@@ -175,7 +175,7 @@ main {
   border-radius: 15px;
   flex-direction: column;
   font-family: 'Roboto', sans-serif;
-  color: #86b9f9;
+  color: #78b3fd;
 }
 
 .list-form input {
@@ -183,7 +183,7 @@ main {
   max-width: 300px;
   padding: 5px 0;
   font-size: 20px;
-  color: rgb(163,202,251);
+  color: #78b3fd;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   letter-spacing: -0.2px;
@@ -320,6 +320,17 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
+.main-desc {
+  font-size: 15px;
+  padding: 0 20px 40px 40px;
+  color: #4d6484
+}
+
+.main-desc span {
+  font-weight: 700;
+  font-size: 17px;
+  color: #304a6e;
+}
 
 @media only screen and (min-width: 768px) {
   main {

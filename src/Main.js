@@ -73,7 +73,7 @@ class Main extends Component {
       <div className="Main">
         <Header/>
         <main>
-          <div class="main-wrapper">
+          <div className="main-wrapper">
           <Clock startTime={start} endTime={end} />
           <List updateList={this.handleListUpdate}/>
           </div>

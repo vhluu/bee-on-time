@@ -52,6 +52,9 @@ class Clock extends Component {
   render() {
     return (
       <div className="time-wrapper">
+        <div className="main-desc">
+          <span>Trying to be on time?</span>
+          <br/>Tell us what you need to do &amp; we'll help you figure out what time you should start getting ready</div>
         <div className="start-time">
           <svg width="40" height="40" viewBox="0 0 60 66.145" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-15.875 -32.417)"><ellipse cx="46.302" cy="37.708" rx="9.26" ry="5.292" fill="#02d395" /><ellipse cx="46.302" cy="37.708" rx="7.938" ry="3.969" fill="#a9ecc8" /><circle cx="45.875" cy="68.562" r="30" fill="#02d395" /><circle cx="45.963" cy="68.475" r="28.5" fill="#a9ecc8" /><circle cx="46.225" cy="68.477" r="24" fill="#02d395" /><circle cx="46.313" cy="68.39" r="22.5" fill="#fff" /><g fill="#a9ecc8"><circle cx="46.302" cy="49.615" r="1.323" /><circle cx="27.781" cy="68.135" r="1.323" /><circle cx="64.823" cy="68.135" r="1.323" /><circle cx="46.302" cy="86.656" r="1.323" /></g><g fill="#02d395"><circle cx="46.302" cy="68.135" r="1.323" /><ellipse ref={this.startMinHand} cx="54.302" cy="68.135" rx="7.938" ry="1.323" /><ellipse ref={this.startHrHand} cx="46.302" cy="75.135" rx="1.323" ry="6.482" /></g></g></svg>
           <div>
