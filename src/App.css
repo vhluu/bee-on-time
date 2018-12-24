@@ -26,6 +26,7 @@ a, a:hover, a:visited {
   align-items: center;
   justify-content: center;
   font-family: 'Nunito', sans-serif;
+  padding: 0 20px;
 }
 
 .Intro h1 {
@@ -35,9 +36,9 @@ a, a:hover, a:visited {
 }
 
 .intro-bee {
-  margin-left: 15px;
-  width: 100px;
-  height: 116px;
+  margin-left: 10px;
+  width: 50px;
+  height: 58.03px;
 }
 
 .Main {
@@ -52,13 +53,13 @@ a, a:hover, a:visited {
 }
 
 h1 {
-  font-size: 72px;
+  font-size: 36px;
   font-weight: normal;
   margin: 0;
 }
 
 h2 {
-  font-size: 48px;
+  font-size: 25px;
   font-weight: normal;
   margin: 0;
 }
@@ -66,9 +67,9 @@ h2 {
 .btn-intro {
   background: #fff;
   border-radius: 50px;
-  width: 150px;
-  padding: 8px;
-  font-size: 20px;
+  width: 125px;
+  padding: 6px;
+  font-size: 18px;
   font-family: 'Roboto';
   font-weight: 500;
   letter-spacing: -0.2px;
@@ -290,13 +291,13 @@ main {
 
 .time-input select {
   background: transparent;
-  font-size: 54px;
+  font-size: 32px;
   color: #fff;
   border: 0;
 }
 
 #time-divider {
-  font-size: 54px;
+  font-size: 32px;
   color: #fff;
 }
 
@@ -333,7 +334,57 @@ input[type="number"] {
   color: #304a6e;
 }
 
+@media only screen and (min-width: 544px) {
+  h1 {
+    font-size: 54px;
+  }
+  
+  h2 {
+    font-size: 36px;
+  }
+
+  .intro-bee {
+    margin-left: 17px;
+    width: 75px;
+    height: 87.05px;
+  }
+
+  .btn-intro {
+    width: 135px;
+    padding: 7px;
+    font-size: 19px;
+  }
+
+  .time-input select, #time-divider {
+    font-size: 40px;
+  }
+}
+
 @media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 72px;
+  }
+  
+  h2 {
+    font-size: 48px;
+  }
+
+  .Intro {
+    padding: 0 30px;
+  }
+
+  .intro-bee {
+    margin-left: 15px;
+    width: 100px;
+    height: 116px;
+  }
+
+  .btn-intro {
+    width: 150px;
+    padding: 8px;
+    font-size: 20px;
+  }
+
   main {
     display: flex;
     align-items: center;
@@ -361,5 +412,9 @@ input[type="number"] {
     margin-right: 10px;
     width: 75px;
     height: 75px;
+  }
+
+  .time-input select, #time-divider {
+    font-size: 54px;
   }
 }

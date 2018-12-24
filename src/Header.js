@@ -3,7 +3,7 @@ import './App.css';
 
 class Header extends Component {
   render() {
-    return (<header>
+    return (<header>    
       <div className="logo">
         <svg width="30" viewBox="0 0 166.875 193.684" fill="rgba(0,0,0,0.4)" xmlns="http://www.w3.org/2000/svg">
           <g transform="translate(-6.74 -27.418)">

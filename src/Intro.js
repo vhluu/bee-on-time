@@ -103,23 +103,17 @@ class Intro extends Component {
             <h2>What time do you need to arrive by?</h2>
           </div>
           <div className="time-input">
-            <div className="time-input-wrapper">
-              <label htmlFor="hr">HR</label>
-              <select name="hr" onChange={this.hrChange}>
-                { 
-                  (hrOptions).map((opt) => <option key={opt.value} value={opt.value}>{opt.text}</option>)
-                }
-              </select>
-            </div>
+            <select name="hr" onChange={this.hrChange}>
+              { 
+                (hrOptions).map((opt) => <option key={opt.value} value={opt.value}>{opt.text}</option>)
+              }
+            </select>
             <span id="time-divider">:</span>
-            <div className="time-input-wrapper">
-              <label htmlFor="min">MIN</label>
-              <select name="min" onChange={this.minChange}>
-                { 
-                  (minOptions).map((opt) => <option key={opt.value} value={opt.value}>{opt.text}</option>)
-                }
-              </select>
-            </div>
+            <select name="min" onChange={this.minChange}>
+              { 
+                (minOptions).map((opt) => <option key={opt.value} value={opt.value}>{opt.text}</option>)
+              }
+            </select>
             <select name="period" onChange={this.periodChange}>
               <option value="PM">PM</option>
               <option value="AM">AM</option>
