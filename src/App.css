@@ -103,10 +103,10 @@ main {
 }
 
 .main-wrapper {
-  display: flex;
   border-radius: 15px;
   box-shadow: 3px 3px 10px #a6dcf5;
   background: rgba(255,255,255,0.95);
+  margin: 0 20px;
 }
 
 .clickable {
@@ -116,10 +116,10 @@ main {
 /* List */
 .list {
   color: #3FC7FF;
-  padding: 55px 25px;
+  padding: 23px 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
   height: 500px;
   width: 80%;
-  max-width: 400px;
   position: relative;
   margin: 0 auto;
 }
@@ -127,6 +127,7 @@ main {
 .list-header {
   display: flex;
   font-weight: 700;
+  font-size: 13px;
   color: #b0bec5;
   text-transform: uppercase;
   font-family: 'Nunito', sans-serif;
@@ -168,8 +169,6 @@ main {
   position: absolute;
   z-index: 100;
   top: 0;
-  left: -350px;
-  width: 800px;
   height: 450px;
   padding: 40px;
   background: #fff;
@@ -225,29 +224,24 @@ main {
 .add-btn {
   background: #a4e3fc;
   color: #fff;
-  width: 40px;
   text-align: center;
   border-radius: 50px;
   position: absolute;
-  top: 20px;
-  right: 20px;
   font-family: 'PT Sans', sans-serif;
   font-weight: 700;
   font-size: 30px;
+  width: 32px;
+  font-size: 25px;
+  top: 14px;
+  right: -18px;
 }
 
 /* Time on Main Page */
 .time-wrapper {
   color: #fff;
-  height: 200px;
   width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   font-size: 30px;
   margin: 0 auto;
-  max-width: 400px;
 }
 
 .time-wrapper svg {
@@ -260,14 +254,15 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-weight: 600;
   font-family: 'Nunito', sans-serif;
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .start-time {
   color: #85e4b1;
+  padding-top: 20px;
 }
 
 .end-time {
@@ -323,9 +318,9 @@ input[type="number"] {
 
 .main-desc {
   font-size: 15px;
-  padding: 0 20px 40px 40px;
   color: #4d6484;
   line-height: 1.5;
+  padding: 25px 0 0 0;
 }
 
 .main-desc span {
@@ -394,18 +389,42 @@ input[type="number"] {
     padding-top: 0;
   }
 
+  .main-wrapper {
+    display: flex;
+  }
+
+  .main-desc {
+    padding: 0 20px 40px 40px;
+  }
+
   .list {
+    border: 0;
+    padding: 55px 25px;
     width: 450px;
     max-width: 450px;
     margin: 0;
   }
 
+  .list-header {
+    font-size: 16px;
+  }
+
+  .list-form {
+    left: -350px;
+    width: 800px;
+  }
+  
   .time-wrapper {
     width: 350px;
+    height: 200px;
     margin: 0;
     max-width: 450px;
     height: 500px;
     font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .time-wrapper svg {
@@ -414,7 +433,23 @@ input[type="number"] {
     height: 75px;
   }
 
+  .start-time {
+    padding-top: 0;
+  }
+
+  .start-time, .end-time {
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
   .time-input select, #time-divider {
     font-size: 54px;
+  }
+
+  .add-btn {
+    width: 40px;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
   }
 }
