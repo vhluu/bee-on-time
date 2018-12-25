@@ -205,12 +205,16 @@ main {
   margin-bottom: 20px;
 }
 
+.list-form input:invalid {
+  box-shadow: none;
+}
+
 .list-form input[type="number"] {
   max-width: 40px;
 }
 
 .list-form input::placeholder {
-  color: rgb(163,202,251,0.3);
+  color: rgba(163,202,251,0.3);
 }
 
 .list-form input[type="submit"] {
