@@ -20,7 +20,7 @@ class List extends Component {
     this.closeForm = this.closeForm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
-    this.myForm = React.createRef();
+    this.formModal = React.createRef();
     this.taskInput = React.createRef();
     this.hrInput = React.createRef();
     this.minInput = React.createRef();
@@ -45,7 +45,7 @@ class List extends Component {
   openForm(type, id) {
     // add some sort of animation
     this.setState({ formEvent: type });
-    this.myForm.current.style.display = "flex";
+    this.formModal.current.style.display = "block";
 
     if (type === 'edit') {
       // display default values to edit
@@ -61,7 +61,7 @@ class List extends Component {
 
   closeForm() {
     // hide and clear form
-    this.myForm.current.style.display = "none";
+    this.formModal.current.style.display = "none";
     this.taskInput.current.value = '';
     this.hrInput.current.value = '';
     this.minInput.current.value = '';
@@ -112,40 +112,46 @@ class List extends Component {
 
   render() {
     return (
-      <div className="list">
-        <form className="list-form" ref={this.myForm} onSubmit={this.handleSubmit}>
-          <div className="clickable add-btn" onClick={this.closeForm}>x</div>
-          <h3>Add a new task</h3>
-          <label htmlFor="task">What do you need to do?</label>
-          <input type="text" name="task" ref={this.taskInput} required maxLength="50" placeholder="Pack lunch"/>
-          <label>How long will it take?</label>
-          <div>
-            <input type="number" name="estimated-hrs" ref={this.hrInput} required min="0" placeholder="0"/> 
-            <span>hr(s)</span>
-            <input type="number" id="estimated-min" name="estimated-min" required min="0" ref={this.minInput} placeholder="0"/>
-            <span>mins</span>
-          </div>
-          <input type="submit" className="clickable" value="Submit"></input>
-        </form>
-        <div className="add-btn clickable" onClick={this.addItem.bind(this)}>+</div>
-        <ul>
-          <li className="list-header">
-            <div>What I Need to Do</div>
-            <div>Estimated Time</div>
-          </li>
-          {
-            (this.state.listItems).map((item) => <li key={item.id} className="list-item">
-              <div>
-                <div className="list-item-desc">{item.desc}</div>
-                <div>{item.hr}</div>
-                <div>{item.min}</div>
-                <div onClick={this.editItem.bind(this, item.id)}>*</div>
-                <div onClick={this.removeItem.bind(this, item.id)}>Cancel</div>
-              </div>
-            </li>)
-          }
-        </ul>
+      <div className="list-wrapper">
+        <div className="modal" ref={this.formModal}>
+          <form className="list-form" onSubmit={this.handleSubmit}>
+            <div className="clickable cancel-btn btn" onClick={this.closeForm}>x</div>
+            <h3>Add a new task</h3>
+            <label htmlFor="task">What do you need to do?</label>
+            <input type="text" name="task" ref={this.taskInput} required maxLength="50" placeholder="Pack lunch"/>
+            <label>How long will it take?</label>
+            <div>
+              <input type="number" name="estimated-hrs" ref={this.hrInput} required min="0" placeholder="0"/> 
+              <span>hr(s)</span>
+              <input type="number" id="estimated-min" name="estimated-min" required min="0" ref={this.minInput} placeholder="0"/>
+              <span>mins</span>
+            </div>
+            <input type="submit" className="clickable" value="Submit"></input>
+          </form>
+        </div>
+      
+        <div className="list">
+          <div className="add-btn btn clickable" onClick={this.addItem.bind(this)}>+</div>
+          <ul>
+            <li className="list-header">
+              <div>What I Need to Do</div>
+              <div>Estimated Time</div>
+            </li>
+            {
+              (this.state.listItems).map((item) => <li key={item.id} className="list-item">
+                <div>
+                  <div className="list-item-desc">{item.desc}</div>
+                  <div>{item.hr}</div>
+                  <div>{item.min}</div>
+                  <div onClick={this.editItem.bind(this, item.id)}>*</div>
+                  <div onClick={this.removeItem.bind(this, item.id)}>Cancel</div>
+                </div>
+              </li>)
+            }
+          </ul>
+        </div>
       </div>
+      
     );
   }
 }
