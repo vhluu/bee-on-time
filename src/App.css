@@ -194,7 +194,7 @@ main {
 }
 
 .list-form input {
-  border-bottom: 2px solid rgb(163,202,251,0.3);
+  border-bottom: 2px solid rgba(163,202,251,0.3);
   max-width: 300px;
   padding: 5px 0;
   font-size: 20px;
@@ -354,6 +354,17 @@ input[type="number"] {
   font-weight: 700;
   font-size: 17px;
   color: #304a6e;
+}
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  cursor: move;
 }
 
 @media only screen and (min-width: 544px) {
