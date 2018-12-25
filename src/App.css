@@ -116,7 +116,7 @@ main {
 /* List */
 .list {
   color: #3FC7FF;
-  padding: 23px 0;
+  padding: 23px 0 100px 0;
   border-top: 1px solid rgba(0,0,0,0.1);
   height: 500px;
   width: 80%;
@@ -289,6 +289,7 @@ main {
   font-size: 32px;
   color: #fff;
   border: 0;
+  -webkit-appearance:none;
 }
 
 #time-divider {
@@ -387,6 +388,7 @@ input[type="number"] {
     width: 100vw;
     height: 100vh;
     padding-top: 0;
+    min-height: 700px;
   }
 
   .main-wrapper {
@@ -413,7 +415,7 @@ input[type="number"] {
     left: -350px;
     width: 800px;
   }
-  
+
   .time-wrapper {
     width: 350px;
     height: 200px;
