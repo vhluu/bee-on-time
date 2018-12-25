@@ -100,6 +100,7 @@ header {
 main {
   font-family: 'Nunito', sans-serif;
   padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .main-wrapper {
@@ -118,7 +119,6 @@ main {
   color: #3FC7FF;
   padding: 23px 0 100px 0;
   border-top: 1px solid rgba(0,0,0,0.1);
-  height: 500px;
   width: 80%;
   position: relative;
   margin: 0 auto;
@@ -164,12 +164,27 @@ main {
   max-width: 10%;
 }
 
-.list-form {
+.modal {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(102,102,102,0.4);
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 90;
   display: none;
+}
+
+.list-form {
+  display: flex;
   position: absolute;
   z-index: 100;
-  top: 0;
-  height: 450px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: calc(100vw - 40px);
+  max-width: 450px;
   padding: 40px;
   background: #fff;
   border-radius: 15px;
@@ -203,7 +218,7 @@ main {
   color: #fff;
   border-radius: 50px;
   width: 110px;
-  margin-top: 40px;
+  margin: 20px 0 0 0;
 }
 
 .list-form span {
@@ -220,8 +235,7 @@ main {
   margin-left: 15px;
 }
 
-
-.add-btn {
+.btn {
   background: #a4e3fc;
   color: #fff;
   text-align: center;
@@ -232,8 +246,16 @@ main {
   font-size: 30px;
   width: 32px;
   font-size: 25px;
+}
+
+.add-btn {
   top: 14px;
   right: -18px;
+}
+
+.cancel-btn {
+  top: 14px;
+  right: 12px;
 }
 
 /* Time on Main Page */
@@ -289,7 +311,7 @@ main {
   font-size: 32px;
   color: #fff;
   border: 0;
-  -webkit-appearance:none;
+  /* -webkit-appearance:none; */
 }
 
 #time-divider {
@@ -321,7 +343,7 @@ input[type="number"] {
   font-size: 15px;
   color: #4d6484;
   line-height: 1.5;
-  padding: 25px 0 0 0;
+  padding: 30px 0 0 0;
 }
 
 .main-desc span {
@@ -388,6 +410,7 @@ input[type="number"] {
     width: 100vw;
     height: 100vh;
     padding-top: 0;
+    padding-bottom: 0;
     min-height: 700px;
   }
 
@@ -402,25 +425,21 @@ input[type="number"] {
   .list {
     border: 0;
     padding: 55px 25px;
-    width: 450px;
-    max-width: 450px;
+    width: 418px;
+    max-width: 418px;
     margin: 0;
+    height: 500px;
   }
 
   .list-header {
     font-size: 16px;
   }
 
-  .list-form {
-    left: -350px;
-    width: 800px;
-  }
-
   .time-wrapper {
-    width: 350px;
+    width: 340px;
     height: 200px;
     margin: 0;
-    max-width: 450px;
+    max-width: 340px;
     height: 500px;
     font-size: 40px;
     display: flex;
@@ -448,10 +467,13 @@ input[type="number"] {
     font-size: 54px;
   }
 
-  .add-btn {
+  .btn {
     width: 40px;
+    font-size: 30px;
+  }
+
+  .add-btn, .cancel-btn {
     top: 20px;
     right: 20px;
-    font-size: 30px;
   }
 }
