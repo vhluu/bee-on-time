@@ -32,18 +32,31 @@ class Main extends Component {
     hr += Math.floor(min / 60);
     min = (min % 60);
 
+    // if the total hrs is 12 or greater, we will figure out the 12/24 cycles so that
+    // we change just change from 'AM' or 'PM'
+    // ex. if total hrs is 12, and end time is 1 PM, we just set start to 1 AM
+    if (hr >= 12 && Math.floor(hr/12) % 2 == 0) { // is even
+      hr = hr%12;
+    }
+    else if (hr >= 12 && Math.floor(hr/12) % 2 == 1) { // is odd
+      start.type = ((start.type === 'PM') ? 'AM' : 'PM');
+      hr = hr%12;
+    }
+
     console.log(`${start.hr}, ${start.min}, ${start.type}`);
     console.log(`${end.hr}, ${end.min}, ${end.type}`);
     console.log(`${hr}, ${min}`);
 
-    // calculate new start minute
+    // subtracts total min from start time 
     if (start.min < min) {
       start.min = (start.min + 60) - min;
       if (start.hr === 1) {
-        start.hr = 12;
-        start.type = ((start.type === 'PM') ? 'AM' : 'PM');
+        start.hr = 12; 
       }
       else {
+        if (start.hr === 12) {
+          start.type = ((start.type === 'PM') ? 'AM' : 'PM');
+        }
         start.hr--;
       }
     }
@@ -51,12 +64,15 @@ class Main extends Component {
       start.min -= min;
     }
 
-    // calculate new start hr 
+    // subtracts total hrs from start time
     if (start.hr < hr) {
       start.hr = start.hr - hr + 12;
       start.type = ((start.type === 'PM') ? 'AM' : 'PM');
     }
     else {
+      if (start.hr === 12 && hr > 0) {
+        start.type = ((start.type === 'PM') ? 'AM' : 'PM');
+      }
       start.hr -= hr;
       if (start.hr < 1) {
         start.hr += 12;
