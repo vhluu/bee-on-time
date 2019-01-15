@@ -111,6 +111,7 @@ class List extends Component {
   }
 
   itemDragStart(e) {
+    e.dataTransfer.clearData();
     e.target.style.opacity = '0.4';
 
     //e.dataTransfer.effectAllowed = 'move';
@@ -135,10 +136,11 @@ class List extends Component {
   }
 
   itemDrop(e) {
+    e.preventDefault();
     var currentId = e.target.parentNode.getAttribute('dragId');
     var transferId = e.dataTransfer.getData('text');
 
-    e.dataTransfer.clearData();
+    //e.dataTransfer.clearData();
     e.target.parentNode.style.border = '0';
 
     if (transferId !== currentId) {
