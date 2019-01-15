@@ -90,7 +90,7 @@ class List extends Component {
     }
 
     else if (this.state.formEvent === 'edit') { // edit current list item
-      const currList = this.state.listItems
+      const currList = this.state.listItems;
       for (var i = 0; i < currList.length; i++) {
         if (currList[i].id === this.state.formId) {
           currList[i] = {
@@ -108,6 +108,46 @@ class List extends Component {
 
     // hide and clear form
     this.closeForm();
+  }
+
+  itemDragStart(e) {
+    e.dataTransfer.clearData();
+    e.target.style.opacity = '0.4';
+    //e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text', e.target.querySelector('div').getAttribute('dragId'));
+  }
+  itemDragOver(e) {
+    if (e.preventDefault) e.preventDefault();
+    //return false;
+  }
+  itemDragEnter(e) {
+    e.target.parentNode.style.borderBottom = '2px solid #78b3fd';
+  }
+  itemDragLeave(e) {
+    e.target.parentNode.style.border = '0';
+  }
+  itemDragEnd(e) {
+    e.target.style.opacity = '1';
+  }
+  itemDrop(e) {
+    e.preventDefault();
+    var currentId = e.target.parentNode.getAttribute('dragId');
+    var transferId = e.dataTransfer.getData('text');
+    //e.dataTransfer.clearData();
+    e.target.parentNode.style.border = '0';
+    if (transferId !== currentId) {
+      var listClone = []; 
+      this.setState(((state, props) => {
+        var swap1 = state.listItems.findIndex(items => items.id == parseInt(currentId));
+        var swap2 = state.listItems.findIndex(items => items.id == parseInt(transferId));
+        listClone = state.listItems.map(l => Object.assign({}, l));
+        var temp = listClone[swap1];
+        listClone[swap1] = listClone[swap2];
+        listClone[swap2] = temp;
+        return { listItems: listClone};
+      }));
+    }
+    return false;
   }
 
   render() {
@@ -170,8 +210,10 @@ class List extends Component {
               <div>Estimated Time</div>
             </li>
             {
-              (this.state.listItems).map((item) => <li key={item.id} className="list-item">
-                <div>
+              (this.state.listItems).map((item) => <li key={item.id} className="list-item" draggable="true" onDragStart={this.itemDragStart.bind(this)}
+                onDragOver={this.itemDragOver.bind(this)} onDragEnter={this.itemDragEnter.bind(this)} onDragLeave={this.itemDragLeave.bind(this)}
+                onDragEnd={this.itemDragEnd.bind(this)} onDrop={this.itemDrop.bind(this)}>
+                <div dragid={item.id}>
                   <div className="list-item-desc">{item.desc}</div>
                   <div className="list-time-controls">
                     <div>
