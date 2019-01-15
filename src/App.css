@@ -16,6 +16,10 @@ a, a:hover, a:visited {
   text-decoration: none;
 }
 
+sup { 
+  font-size: x-small;
+}
+
 .Intro {
   background: linear-gradient(#5bd3ff, #abcafd);
   color: rgba(255,255,255,0.9);
@@ -119,7 +123,7 @@ main {
   color: #3FC7FF;
   padding: 23px 0 100px 0;
   border-top: 1px solid rgba(0,0,0,0.1);
-  width: 80%;
+  width: 84%;
   position: relative;
   margin: 0 auto;
 }
@@ -150,7 +154,7 @@ main {
   margin-top: 5px;
 }
 
-.list-item div {
+.list-item > div {
   display: flex; 
 }
 
@@ -159,9 +163,31 @@ main {
   max-width: 60%;
 }
 
-.list-item div > :not(.list-item-desc) {
+/* .list-item div > :not(.list-item-desc) {
   flex-basis: 10%;
   max-width: 10%;
+} */
+
+.list-edit {
+  width: 20.39px;
+  height: 18px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.list-cancel {
+  width: 13px;
+  height: 13px;
+}
+
+.list-time-controls {
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 40%;
+}
+
+.list-controls {
+  display: flex;
 }
 
 .modal {
@@ -218,7 +244,7 @@ main {
 }
 
 .list-form input[type="submit"] {
-  background: rgb(163,202,251);
+  background: #bcc2ff;
   color: #fff;
   border-radius: 50px;
   width: 110px;
@@ -253,19 +279,24 @@ main {
 }
 
 .add-btn {
-  top: 14px;
-  right: -18px;
+  top: 20px;
+  right: -10px;
+}
+
+.add-btn, .cancel-btn {
+  position: absolute;
+  width: 25px;
 }
 
 .cancel-btn {
-  top: 14px;
-  right: 12px;
+  top: 20px;
+  right: 20px;
 }
 
 /* Time on Main Page */
 .time-wrapper {
   color: #fff;
-  width: 80%;
+  width: 84%;
   font-size: 30px;
   margin: 0 auto;
 }
@@ -391,6 +422,10 @@ input[type="number"] {
     font-size: 48px;
   }
 
+  sup {
+    font-size: small;
+  }
+
   .Intro {
     padding: 0 30px;
   }
@@ -435,8 +470,24 @@ input[type="number"] {
     height: 500px;
   }
 
+  .list-item {
+    font-size: 19px;
+  }
+
   .list-header {
     font-size: 16px;
+  }
+
+  .list-edit {
+    width: 28.33px;
+    height: 25px;
+    margin-left: 0;
+    margin-right: 10px;
+  }
+  
+  .list-cancel {
+    width: 15px;
+    height: 15px;
   }
 
   .time-wrapper {
@@ -479,5 +530,6 @@ input[type="number"] {
   .add-btn, .cancel-btn {
     top: 20px;
     right: 20px;
+    width: 35px;
   }
 }
