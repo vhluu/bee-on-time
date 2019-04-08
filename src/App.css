@@ -94,11 +94,11 @@ header {
   align-items: center;
 }
 
-.logo-text {
+.logo-text a {
   font-size: 30px;
   font-family: 'Nunito', sans-serif;
   margin-left: 20px;
-  color: rgba(0,0,0,0.3);
+  color: rgba(0,0,0,0.3) !important;
 }
 
 main {
@@ -543,5 +543,20 @@ input[type="number"] {
     top: 20px;
     right: 20px;
     width: 35px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .time-wrapper {
+    width: 33vw; 
+    max-width: 450px;
+    height: 53vh;
+  }
+  .list {
+    width: 41vw;
+    max-width: 600px;
+  }
+  .margin-desc {
+    margin-top: 90px;
   }
 }
