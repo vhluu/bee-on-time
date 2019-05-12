@@ -50,7 +50,9 @@ sup {
   /* background: rgb(146,211,248);
   background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(315deg, rgb(133,213,250) 0%, rgb(93,176,248) 100%); */
   /* background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(50deg, #00A3E6 0%, #3FC7FF 100%); */
-  background: url(/clouds-bg.png) bottom -17% left 21%/ 114% no-repeat, linear-gradient(#9ae2fd, #a1c4fd);
+  /* background: url(/clouds-bg.png) bottom -17% left 21%/ 114% no-repeat, linear-gradient(#9ae2fd, #a1c4fd); */
+  background: url(/clouds-bg-cropped.png) center bottom no-repeat, linear-gradient(#9ae2fd, #a1c4fd);
+  background-size: contain;
   color: #fff;
   min-height: 100vh;
   min-width: 100vw;
@@ -201,6 +203,10 @@ main {
   display: none;
 }
 
+.modal label {
+  color: #4d6484;
+}
+
 .list-form {
   display: flex;
   position: absolute;
@@ -220,7 +226,7 @@ main {
 }
 
 .list-form input {
-  border-bottom: 2px solid rgb(163,202,251,0.3);
+  border-bottom: 2px solid rgb(163,202,251,0.7);
   max-width: 300px;
   padding: 5px 0;
   font-size: 20px;
@@ -244,6 +250,7 @@ main {
 }
 
 .list-form input[type="submit"] {
+  border-bottom: none;
   background: #bcc2ff;
   color: #fff;
   border-radius: 50px;
@@ -568,6 +575,7 @@ input[type="number"] {
     width: 33vw; 
     max-width: 450px;
     height: 53vh;
+    min-height: 500px;
   }
   .list {
     width: 41vw;
