@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
 
-class Header extends Component {
-  render() {
-    return (<header>    
+function Header() {
+  return (
+    <header>    
       <div className="logo">
         <a href="/">
           <svg width="30" viewBox="0 0 166.875 193.684" fill="rgba(0,0,0,0.4)" xmlns="http://www.w3.org/2000/svg">
@@ -35,8 +35,8 @@ class Header extends Component {
         </a>
         <div className="logo-text"><a href="/">BEE ON TIME</a></div>
       </div>
-    </header>);
-  }
+    </header>
+  );
 }
 
 export default Header;
