@@ -29,8 +29,30 @@ class Select extends Component {
     this.selectOption = this.selectOption.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.focusNextItem = this.focusNextItem.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
 
     this.dropdownRef = React.createRef(); // reference to dropdown menu
+    this.setSelectRef = this.setSelectRef.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  setSelectRef(node) {
+    this.SelectRef = node;
+  }
+
+  /* Closes the select dropdown menu on outside click */
+  handleClickOutside(event) {
+    const { open } = this.state;
+    if (open && this.SelectRef && !this.SelectRef.contains(event.target)) {
+      this.closeSelect();
+    }
   }
 
   /* Toggles the select dropdown menu */
@@ -143,7 +165,7 @@ class Select extends Component {
     const selectClass = open ? 'active' : '';
     
     return (
-      <div className={`select ${selectClass}`}>
+      <div className={`select ${selectClass}`} ref={this.setSelectRef}>
         <div className="option-current" onClick={this.toggleSelect} data-value={currVal} tabIndex="0" onKeyDown={this.handleKeyDown}>{ currLabel }</div>
         <div className="options-wrapper">
           <div className="options" ref={this.dropdownRef}>
