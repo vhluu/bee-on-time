@@ -25,6 +25,10 @@ sup {
   font-size: x-small;
 }
 
+.hide {
+  display: none !important;
+}
+
 .Intro {
   /* background: linear-gradient(#5bd3ff, #abcafd); */
   background: linear-gradient(#57cdf9, #839cf5);
@@ -196,7 +200,13 @@ main {
   left: 0;
   position: fixed;
   z-index: 90;
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
 }
 
 .modal label {
@@ -205,12 +215,6 @@ main {
 
 .list-form {
   display: flex;
-  position: absolute;
-  z-index: 100;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
   width: calc(100vw - 40px);
   max-width: 450px;
   padding: 40px;
@@ -279,19 +283,25 @@ main {
   font-size: 30px;
   width: 32px;
   font-size: 25px;
+  cursor: pointer;
 }
 
-.add-btn {
+.btn > * {
+  pointer-events: none;
+}
+
+.list-wrapper .btn.add {
   top: 20px;
   right: -10px;
 }
 
-.add-btn, .cancel-btn {
+.list-wrapper .btn.add, .modal .btn.close {
   position: absolute;
   width: 25px;
+  background: transparent;
 }
 
-.cancel-btn {
+.modal .btn.close {
   top: 20px;
   right: 20px;
 }
@@ -637,7 +647,7 @@ input[type="number"] {
     font-size: 30px;
   }
 
-  .add-btn, .cancel-btn {
+  .list-wrapper .btn.add, .modal .btn.close {
     top: 20px;
     right: 20px;
     width: 35px;
