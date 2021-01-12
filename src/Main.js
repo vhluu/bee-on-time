@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import List from './components/List';
 import Clock from './components/Clock';
+import Sidebar from './components/Sidebar';
 
 class Main extends Component {
   constructor(props) {
@@ -90,8 +91,15 @@ class Main extends Component {
         <Header/>
         <main>
           <div className="main-wrapper">
-          <Clock startTime={start} endTime={end} />
-          <List updateList={this.handleListUpdate}/>
+            <Sidebar>
+              <div className="main-desc">
+                <span>Trying to be on time?</span>
+                <br/>Tell us what you need to do &amp; we'll help you figure out what time you should start get started
+              </div>
+              <Clock time={start} title="Start" />
+              <Clock time={end} title="End" color="red" />
+            </Sidebar>
+            <List updateList={this.handleListUpdate}/>
           </div>
         </main>
         

@@ -84,7 +84,7 @@ h2 {
 }
 
 .btn-intro, .btn-intro:visited {
-  color: rgb(59 151 232);
+  color: #3b97e8;
 }
 
 header {
@@ -296,21 +296,21 @@ main {
   right: 20px;
 }
 
-/* Time on Main Page */
-.time-wrapper {
+/* Sidebar */
+.sidebar {
   color: #fff;
   width: 84%;
   font-size: 30px;
   margin: 0 auto;
 }
 
-.time-wrapper svg {
+.sidebar .clock svg {
   margin-right: 10px;
   width: 55px;
   height: 55px;
 }
 
-.start-time, .end-time {
+.clock {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -320,13 +320,21 @@ main {
   justify-content: start;
 }
 
-.start-time {
+.clock {
   color: #85e4b1;
   padding-top: 20px;
 }
 
-.end-time {
+.clock.red {
   color: #FF8A8A;
+}
+
+.clock.red .fill0 {
+  fill: #e54040;
+}
+
+.clock.red .fill1 {
+  fill: #FF8A8A;
 }
 
 .time-title {
@@ -592,7 +600,7 @@ input[type="number"] {
     height: 15px;
   }
 
-  .time-wrapper {
+  .sidebar {
     width: 340px;
     height: 200px;
     margin: 0;
@@ -605,17 +613,17 @@ input[type="number"] {
     justify-content: center;
   }
 
-  .time-wrapper svg {
+  .sidebar .clock svg {
     margin-right: 10px;
     width: 75px;
     height: 75px;
   }
 
-  .start-time {
+  .clock.green {
     padding-top: 0;
   }
 
-  .start-time, .end-time {
+  .clock {
     justify-content: space-between;
     margin-bottom: 30px;
   }
@@ -646,7 +654,7 @@ input[type="number"] {
 }
 
 @media only screen and (min-width: 1024px) {
-  .time-wrapper {
+  .sidebar {
     width: 33vw; 
     max-width: 450px;
     height: 53vh;
