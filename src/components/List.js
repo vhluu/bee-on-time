@@ -1,118 +1,116 @@
 import React, { Component } from 'react';
 import Button from './Button';
 import Modal from './Modal';
+import TaskForm from './TaskForm';
 
 class List extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
-      // listItems: [{id: 1, desc: "Take a nap", hr: 0, min: 30}],
-      listItems: [], // the list data
+      listItems: [], // the list data (ex. [{id: 1, desc: "Take a nap", hr: 0, min: 30}])
       formEvent: '', // string w/ value 'add' or 'remove' to determine user action in form
-      formId: 0, // the id of the item we are currently editing in the form
+      itemId: -1, // the id of the item we are currently editing in the form
       id: 1, // the last used id. to determine the next id
       startTime: '', 
       endTime: '', 
       totalHrs: 0, 
       totalMin: 0,
       showModal: false,
+      prefillForm: false, // whether task form fields should be prefilled
+      taskVal: '', // current task input field value
+      hrVal: '', // current hr input field value
+      minVal: '' // current min input field value
     }
 
     this.openForm = this.openForm.bind(this);
-    this.closeForm = this.closeForm.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addItem = this.addItem.bind(this);
 
-    this.taskInput = React.createRef();
-    this.hrInput = React.createRef();
-    this.minInput = React.createRef();
+    this.formRef = React.createRef();
   }
 
+  /* Opens task form in 'edit' mode, passing id of the list item */
   editItem(id) {
     this.openForm('edit', id);
   }
 
+  /* Opens task form in 'add' mode */
+  addItem() {
+    this.openForm('add');
+  }
+
+  /* Removes item from list */
   removeItem(id) {
-    this.setState((state, props) => ({
+    this.setState((state) => ({
       listItems: state.listItems.filter(item => item.id !== id)
     }), () => {
-      console.log(this.state.listItem); this.props.updateList(this.state.listItems);
+      this.props.updateList(this.state.listItems);
     })
   }
 
-  addItem() {
-    this.openForm('add', 0);
-  }
-
+  /* Opens the task form (should be prefilled if editing list entry) */
   openForm(type, id) {
-    // add some sort of animation
-    this.setState({ formEvent: type, showModal: true });
+    let updatedState = {
+      formEvent: type,
+      showModal: true
+    };
 
-    if (type === 'edit') {
-      // display default values to edit
-      this.setState({ formId: id });
-      const currentItem = (this.state.listItems.filter(item => item.id === id));
+    if (type === 'edit') { // get values of current item to prefill form with
+      const currentItem = this.state.listItems.filter(item => item.id === id);
       if (currentItem && currentItem.length > 0) {
-        this.taskInput.current.value = currentItem[0].desc;
-        this.hrInput.current.value = currentItem[0].hr;
-        this.minInput.current.value = currentItem[0].min;
+        updatedState = {
+          ...updatedState,
+          itemId: id,
+          taskVal: currentItem[0].task,
+          hrVal: currentItem[0].hr,
+          minVal: currentItem[0].min,
+          prefillForm: true
+        };
       }
     }
+
+    this.setState(updatedState);
   }
 
-  closeForm() {
-    console.log('closing form');
-    // hide and clear form
-    this.taskInput.current.value = '';
-    this.hrInput.current.value = '';
-    this.minInput.current.value = '';
+  /* Closes modal and clears form fields */
+  closeModal() {
+    this.setState({
+      showModal: false,
+      prefillForm: false,
+    });
 
-    this.setState({ showModal: false });
+    this.formRef.current.resetForm();
   }
 
-  // submit of form
-  handleSubmit(event) {
-    event.preventDefault();
-    const newDesc = this.taskInput.current.value;
-    const newHr = parseInt(this.hrInput.current.value);
-    const newMin = parseInt(this.minInput.current.value);
+  /* Handles form submit */
+  handleSubmit(formData) {
+    const { task, hr, min } = formData;
+    const { formEvent, listItems, itemId } = this.state;
 
-    if (this.state.formEvent === 'add') { // add new item to list
-      this.setState(((state, props) => ({
-        listItems: (state.listItems).concat([{
-          id: this.state.id + 1, 
-          desc: newDesc,
-          hr: newHr,
-          min: newMin
-        }]),
+    if (formEvent === 'add') { // add new item to list
+      this.setState(((state) => ({
+        listItems: (state.listItems).concat([{ id: this.state.id + 1,  task, hr, min }]),
         id: this.state.id + 1
       })), () => { // callback function
         this.props.updateList(this.state.listItems);
       });
-      
-    }
-
-    else if (this.state.formEvent === 'edit') { // edit current list item
-      const currList = this.state.listItems;
+    } else if (formEvent === 'edit') { // edit current list item
+      const currList = listItems;
       for (var i = 0; i < currList.length; i++) {
-        if (currList[i].id === this.state.formId) {
-          currList[i] = {
-            id: currList[i].id,
-            desc: newDesc,
-            hr: newHr,
-            min: newMin
-          }
+        if (currList[i].id === itemId) {
+          currList[i] = { id: currList[i].id, task, hr, min};
           this.setState({ listItem: currList }, () => { this.props.updateList(currList) });
           break;
         }
       }
-
     }
 
-    // hide and clear form
-    this.closeForm();
+    this.closeModal(); // close modal and clear form
   }
 
+  /* Handles Drag / Drop events */
   itemDragStart(e) {
     e.dataTransfer.clearData();
     e.target.style.opacity = '0.4';
@@ -154,23 +152,12 @@ class List extends Component {
   }
 
   render() {
-    const { showModal } = this.state;
+    const { showModal, taskVal, hrVal, minVal, prefillForm } = this.state;
+    
     return (
       <div className="list-wrapper">
-        <Modal show={showModal} closeSelf={this.closeForm}>
-          <form className="list-form" onSubmit={this.handleSubmit}>
-            <h3>Add a new task</h3>
-            <label htmlFor="task">What do you need to do?</label>
-            <input type="text" name="task" ref={this.taskInput} required maxLength="50" placeholder="Pack lunch"/>
-            <label>How long will it take?</label>
-            <div>
-              <input type="number" name="estimated-hrs" ref={this.hrInput} required min="0" placeholder="0"/> 
-              <span>hr(s)</span>
-              <input type="number" id="estimated-min" name="estimated-min" required min="0" ref={this.minInput} placeholder="0"/>
-              <span>mins</span>
-            </div>
-            <input type="submit" className="clickable" value="Submit"></input>
-          </form>
+        <Modal show={showModal} closeSelf={this.closeModal}>
+          <TaskForm submit={this.handleSubmit} ref={this.formRef} defaultTask={taskVal} defaultHr={hrVal} defaultMin={minVal} prefill={prefillForm} />
         </Modal>
       
         <div className="list">
@@ -185,7 +172,7 @@ class List extends Component {
                 onDragOver={this.itemDragOver.bind(this)} onDragEnter={this.itemDragEnter.bind(this)} onDragLeave={this.itemDragLeave.bind(this)}
                 onDragEnd={this.itemDragEnd.bind(this)} onDrop={this.itemDrop.bind(this)}>
                 <div dragid={item.id}>
-                  <div className="list-item-desc">{item.desc}</div>
+                  <div className="list-item-desc">{item.task}</div>
                   <div className="list-time-controls">
                     <div>
                       {item.hr > 0 && <span>{item.hr}<sup>hr&nbsp;</sup></span>}
