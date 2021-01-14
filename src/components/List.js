@@ -43,10 +43,17 @@ class List extends Component {
 
   /* Removes item from list */
   removeItem(id) {
+    let oldTime = {};
     this.setState((state) => ({
-      listItems: state.listItems.filter(item => item.id !== id)
+      listItems: state.listItems.filter(item => {
+        if (item.id == id) {
+          oldTime = { hr: item.hr, min: item.min };
+        }
+        return item.id !== id;
+      })
     }), () => {
-      this.props.updateList(this.state.listItems);
+      // this.props.updateList(this.state.listItems);
+      this.props.updateTime(null, oldTime)
     })
   }
 
@@ -94,14 +101,22 @@ class List extends Component {
         listItems: (state.listItems).concat([{ id: this.state.id + 1,  task, hr, min }]),
         id: this.state.id + 1
       })), () => { // callback function
-        this.props.updateList(this.state.listItems);
+        // this.props.updateList(this.state.listItems);
+        this.props.updateTime({ hr, min });
       });
     } else if (formEvent === 'edit') { // edit current list item
       const currList = listItems;
       for (var i = 0; i < currList.length; i++) {
         if (currList[i].id === itemId) {
+          const oldTime = { 
+            hr: currList[i].hr, 
+            min: currList[i].min
+          };
           currList[i] = { id: currList[i].id, task, hr, min};
-          this.setState({ listItem: currList }, () => { this.props.updateList(currList) });
+          this.setState({ listItem: currList }, () => { 
+            // this.props.updateList(currList)
+            this.props.updateTime({ hr, min }, oldTime);
+          });
           break;
         }
       }
