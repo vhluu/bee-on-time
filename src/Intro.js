@@ -45,8 +45,8 @@ class Intro extends Component {
     }
 
     this.periodSelect = {
-      defaultValue: 'pm',
-      options: [{ value: 'am', label: 'AM'}, { value: 'pm', label: 'PM'}]
+      defaultValue: 'PM',
+      options: [{ value: 'AM', label: 'AM'}, { value: 'PM', label: 'PM'}]
     };
   }
 
