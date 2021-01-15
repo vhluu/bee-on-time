@@ -1,115 +1,131 @@
 import React, { Component } from 'react';
-import '../App.css';
+import Button from './Button';
+import Modal from './Modal';
+import TaskForm from './TaskForm';
 
 class List extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
-      // listItems: [{id: 1, desc: "Take a nap", hr: 0, min: 30}],
-      listItems: [], // the list data
+      listItems: [], // the list data (ex. [{id: 1, desc: "Take a nap", hr: 0, min: 30}])
       formEvent: '', // string w/ value 'add' or 'remove' to determine user action in form
-      formId: 0, // the id of the item we are currently editing in the form
+      itemId: -1, // the id of the item we are currently editing in the form
       id: 1, // the last used id. to determine the next id
       startTime: '', 
       endTime: '', 
       totalHrs: 0, 
-      totalMin: 0
+      totalMin: 0,
+      showModal: false,
+      prefillForm: false, // whether task form fields should be prefilled
+      taskVal: '', // current task input field value
+      hrVal: '', // current hr input field value
+      minVal: '' // current min input field value
     }
 
     this.openForm = this.openForm.bind(this);
-    this.closeForm = this.closeForm.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addItem = this.addItem.bind(this);
 
-    this.formModal = React.createRef();
-    this.taskInput = React.createRef();
-    this.hrInput = React.createRef();
-    this.minInput = React.createRef();
+    this.formRef = React.createRef();
   }
 
+  /* Opens task form in 'edit' mode, passing id of the list item */
   editItem(id) {
     this.openForm('edit', id);
   }
 
+  /* Opens task form in 'add' mode */
+  addItem() {
+    this.openForm('add');
+  }
+
+  /* Removes item from list */
   removeItem(id) {
-    this.setState((state, props) => ({
-      listItems: state.listItems.filter(item => item.id !== id)
+    let oldTime = {};
+    this.setState((state) => ({
+      listItems: state.listItems.filter(item => {
+        if (item.id == id) {
+          oldTime = { hr: item.hr, min: item.min };
+        }
+        return item.id !== id;
+      })
     }), () => {
-      console.log(this.state.listItem); this.props.updateList(this.state.listItems);
+      // this.props.updateList(this.state.listItems);
+      this.props.updateTime(null, oldTime)
     })
   }
 
-  addItem() {
-    this.openForm('add', 0);
-  }
-
+  /* Opens the task form (should be prefilled if editing list entry) */
   openForm(type, id) {
-    // add some sort of animation
-    this.setState({ formEvent: type });
-    this.formModal.current.style.display = "block";
+    let updatedState = {
+      formEvent: type,
+      showModal: true
+    };
 
-    if (type === 'edit') {
-      // display default values to edit
-      this.setState({ formId: id });
-      const currentItem = (this.state.listItems.filter(item => item.id === id));
+    if (type === 'edit') { // get values of current item to prefill form with
+      const currentItem = this.state.listItems.filter(item => item.id === id);
       if (currentItem && currentItem.length > 0) {
-        this.taskInput.current.value = currentItem[0].desc;
-        this.hrInput.current.value = currentItem[0].hr;
-        this.minInput.current.value = currentItem[0].min;
+        updatedState = {
+          ...updatedState,
+          itemId: id,
+          taskVal: currentItem[0].task,
+          hrVal: currentItem[0].hr,
+          minVal: currentItem[0].min,
+          prefillForm: true
+        };
       }
     }
+
+    this.setState(updatedState);
   }
 
-  closeForm() {
-    // hide and clear form
-    this.formModal.current.style.display = "none";
-    this.taskInput.current.value = '';
-    this.hrInput.current.value = '';
-    this.minInput.current.value = '';
+  /* Closes modal and clears form fields */
+  closeModal() {
+    this.setState({
+      showModal: false,
+      prefillForm: false,
+    });
+
+    this.formRef.current.resetForm();
   }
 
-  // submit of form
-  handleSubmit(event) {
-    event.preventDefault();
-    const newDesc = this.taskInput.current.value;
-    const newHr = parseInt(this.hrInput.current.value);
-    const newMin = parseInt(this.minInput.current.value);
+  /* Handles form submit */
+  handleSubmit(formData) {
+    const { task, hr, min } = formData;
+    const { formEvent, listItems, itemId } = this.state;
 
-    if (this.state.formEvent === 'add') { // add new item to list
-      this.setState(((state, props) => ({
-        listItems: (state.listItems).concat([{
-          id: this.state.id + 1, 
-          desc: newDesc,
-          hr: newHr,
-          min: newMin
-        }]),
+    if (formEvent === 'add') { // add new item to list
+      this.setState(((state) => ({
+        listItems: (state.listItems).concat([{ id: this.state.id + 1,  task, hr, min }]),
         id: this.state.id + 1
       })), () => { // callback function
-        this.props.updateList(this.state.listItems);
+        // this.props.updateList(this.state.listItems);
+        this.props.updateTime({ hr, min });
       });
-      
-    }
-
-    else if (this.state.formEvent === 'edit') { // edit current list item
-      const currList = this.state.listItems;
+    } else if (formEvent === 'edit') { // edit current list item
+      const currList = listItems;
       for (var i = 0; i < currList.length; i++) {
-        if (currList[i].id === this.state.formId) {
-          currList[i] = {
-            id: currList[i].id,
-            desc: newDesc,
-            hr: newHr,
-            min: newMin
-          }
-          this.setState({ listItem: currList }, () => { this.props.updateList(currList) });
+        if (currList[i].id === itemId) {
+          const oldTime = { 
+            hr: currList[i].hr, 
+            min: currList[i].min
+          };
+          currList[i] = { id: currList[i].id, task, hr, min};
+          this.setState({ listItem: currList }, () => { 
+            // this.props.updateList(currList)
+            this.props.updateTime({ hr, min }, oldTime);
+          });
           break;
         }
       }
-
     }
 
-    // hide and clear form
-    this.closeForm();
+    this.closeModal(); // close modal and clear form
   }
 
+  /* Handles Drag / Drop events */
   itemDragStart(e) {
     e.dataTransfer.clearData();
     e.target.style.opacity = '0.4';
@@ -151,59 +167,16 @@ class List extends Component {
   }
 
   render() {
+    const { showModal, taskVal, hrVal, minVal, prefillForm } = this.state;
+    
     return (
       <div className="list-wrapper">
-        <div className="modal" ref={this.formModal}>
-          <form className="list-form" onSubmit={this.handleSubmit}>
-            <div onClick={this.closeForm}>
-              <svg className="clickable cancel-btn" enable-background="new" viewBox="0 0 52.88 52.88" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <filter id="b" color-interpolation-filters="sRGB">
-                    <feBlend in2="BackgroundImage" mode="luminosity" />
-                  </filter>
-                </defs>
-                <g transform="translate(0 -244.12)">
-                  <circle transform="matrix(.94032 .0079 0 .94264 1.7 15.203)" cx="26.591" cy="270.67" r="26.326" fill="#cacaff"
-                    filter="url(#b)" stroke="#a2abff" stroke-width="3" />
-                  <rect transform="rotate(45)" x="204.05" y="156.73" width="11.925" height="31.768" ry="5.673" fill="#a2abff" />
-                  <rect transform="rotate(45)" x="194.13" y="166.66" width="31.768" height="11.925" ry="5.963" fill="#a2abff" />
-                  <rect transform="rotate(45)" x="206.83" y="159.38" width="6.368" height="26.477" ry="3.089" fill="#fffeff" />
-                  <rect transform="rotate(45)" x="196.77" y="169.43" width="26.477" height="6.368" ry="3.184" fill="#fffeff" />
-                </g>
-              </svg>
-            </div>
-            <h3>Add a new task</h3>
-            <label htmlFor="task">What do you need to do?</label>
-            <input type="text" name="task" ref={this.taskInput} required maxLength="50" placeholder="Pack lunch"/>
-            <label>How long will it take?</label>
-            <div>
-              <input type="number" name="estimated-hrs" ref={this.hrInput} required min="0" placeholder="0"/> 
-              <span>hr(s)</span>
-              <input type="number" id="estimated-min" name="estimated-min" required min="0" ref={this.minInput} placeholder="0"/>
-              <span>mins</span>
-            </div>
-            <input type="submit" className="clickable" value="Submit"></input>
-          </form>
-        </div>
+        <Modal show={showModal} closeSelf={this.closeModal}>
+          <TaskForm submit={this.handleSubmit} ref={this.formRef} defaultTask={taskVal} defaultHr={hrVal} defaultMin={minVal} prefill={prefillForm} />
+        </Modal>
       
         <div className="list">
-          <div onClick={this.addItem.bind(this)}>
-          <svg class="clickable add-btn" enable-background="new" viewBox="0 0 52.88 52.88" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <filter id="a" color-interpolation-filters="sRGB">
-                <feBlend in2="BackgroundImage" mode="luminosity" />
-              </filter>
-            </defs>
-            <g transform="translate(0 -244.12)">
-              <circle transform="matrix(.94032 .0079 0 .94264 1.7 15.203)" cx="26.591" cy="270.67" r="26.326" fill="#cacaff"
-                filter="url(#a)" stroke="#a2abff" stroke-width="3" />
-              <rect x="20.478" y="254.68" width="11.925" height="31.768" ry="5.673" fill="#a2abff" />
-              <rect x="10.556" y="264.6" width="31.768" height="11.925" ry="5.963" fill="#a2abff" />
-              <rect x="23.256" y="257.32" width="6.368" height="26.477" ry="3.089" fill="#fffeff" />
-              <rect x="13.202" y="267.38" width="26.477" height="6.368" ry="3.184" fill="#fffeff" />
-            </g>
-          </svg>
-          </div>
+          <Button btnType="add" clicked={this.addItem} />
           <ul>
             <li className="list-header">
               <div>What I Need to Do</div>
@@ -214,21 +187,21 @@ class List extends Component {
                 onDragOver={this.itemDragOver.bind(this)} onDragEnter={this.itemDragEnter.bind(this)} onDragLeave={this.itemDragLeave.bind(this)}
                 onDragEnd={this.itemDragEnd.bind(this)} onDrop={this.itemDrop.bind(this)}>
                 <div dragid={item.id}>
-                  <div className="list-item-desc">{item.desc}</div>
+                  <div className="list-item-desc">{item.task}</div>
                   <div className="list-time-controls">
                     <div>
                       {item.hr > 0 && <span>{item.hr}<sup>hr&nbsp;</sup></span>}
                       {item.min > 0 && <span>{item.min}<sup>min&nbsp;</sup></span>}
                     </div>
-                    <div class="list-controls">
+                    <div className="list-controls">
                       <div onClick={this.editItem.bind(this, item.id)}>
-                        <svg class="list-edit clickable" viewBox="0 0 15.858 13.99" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 -279.61)"><g fill="#a2abff"><rect transform="rotate(-40)" x="-183.51" y="221.59" width="10.683" height="6.615" ry="0"/><rect transform="rotate(-40)" x="-174.05" y="221.59" width="3.969" height="6.615" ry="1.323"/><path d="M0 293.604l1.88-5.886 4.242 5.056z"/></g><path d="M1.024 292.73l1.374-4.692 3.485 4.152z" fill="#fffbdf"/><path d="M.77 293.104c-.08-.095.604-2.213.72-2.23.116-.015 1.638 1.798 1.602 1.91-.036.11-2.241.416-2.321.32z" fill="#a2abff"/><rect transform="rotate(-40)" x="-172.73" y="222.19" width="2.117" height="5.421" ry=".851" fill="#eccbff"/><rect transform="rotate(-40)" x="-181.39" y="222.19" width="7.039" height="5.421" ry="0" fill="#ffffb5"/><rect transform="rotate(-40)" x="-172.73" y="222.19" width=".9" height="5.421" ry="0" fill="#eccbff"/><rect transform="scale(1 -1) rotate(40)" x="-174.05" y="-227.61" width="1.023" height="5.421" ry="0" fill="#def0f6"/><g fill="#fffbdf"><path d="M4.026 287.855l-.48 1.582-1.161-1.384z"/><path d="M5.186 289.235l-.48 1.582-1.161-1.384zM6.346 290.625l-.48 1.582-1.161-1.384z"/></g><g fill="#ffffb5"><path d="M4.008 289.083l.48-1.581 1.161 1.384z"/><path d="M5.128 290.433l.48-1.581 1.161 1.384zM2.821 287.68l1.06-.89.581.693-1.64.197zM6.79 290.25l.58.693-1.06.89.48-1.583z"/></g></g></svg>
+                        <svg className="list-edit clickable" viewBox="0 0 15.858 13.99" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 -279.61)"><g fill="#828cec"><rect transform="rotate(-40)" x="-183.51" y="221.59" width="10.683" height="6.615" ry="0"/><rect transform="rotate(-40)" x="-174.05" y="221.59" width="3.969" height="6.615" ry="1.323"/><path d="M0 293.604l1.88-5.886 4.242 5.056z"/></g><path d="M1.024 292.73l1.374-4.692 3.485 4.152z" fill="#fffbdf"/><path d="M.77 293.104c-.08-.095.604-2.213.72-2.23.116-.015 1.638 1.798 1.602 1.91-.036.11-2.241.416-2.321.32z" fill="#828cec"/><rect transform="rotate(-40)" x="-172.73" y="222.19" width="2.117" height="5.421" ry=".851" fill="#eccbff"/><rect transform="rotate(-40)" x="-181.39" y="222.19" width="7.039" height="5.421" ry="0" fill="#ffffb5"/><rect transform="rotate(-40)" x="-172.73" y="222.19" width=".9" height="5.421" ry="0" fill="#eccbff"/><rect transform="scale(1 -1) rotate(40)" x="-174.05" y="-227.61" width="1.023" height="5.421" ry="0" fill="#def0f6"/><g fill="#fffbdf"><path d="M4.026 287.855l-.48 1.582-1.161-1.384z"/><path d="M5.186 289.235l-.48 1.582-1.161-1.384zM6.346 290.625l-.48 1.582-1.161-1.384z"/></g><g fill="#ffffb5"><path d="M4.008 289.083l.48-1.581 1.161 1.384z"/><path d="M5.128 290.433l.48-1.581 1.161 1.384zM2.821 287.68l1.06-.89.581.693-1.64.197zM6.79 290.25l.58.693-1.06.89.48-1.583z"/></g></g></svg>
                       </div>
                       <div onClick={this.removeItem.bind(this, item.id)}>
                         <svg className="list-cancel clickable" viewBox="0 0 26.206 26.206" xmlns="http://www.w3.org/2000/svg">
                           <g transform="rotate(45 304.113 -144.83)">
-                            <rect x="204.05" y="156.73" width="11.925" height="31.768" ry="5.673" fill="#a2abff" />
-                            <rect x="194.13" y="166.66" width="31.768" height="11.925" ry="5.963" fill="#a2abff" />
+                            <rect x="204.05" y="156.73" width="11.925" height="31.768" ry="5.673" fill="#828cec" />
+                            <rect x="194.13" y="166.66" width="31.768" height="11.925" ry="5.963" fill="#828cec" />
                             <rect x="206.83" y="159.38" width="6.368" height="26.477" ry="3.089" fill="#cacaff" />
                             <rect x="196.77" y="169.43" width="26.477" height="6.368" ry="3.184" fill="#cacaff" />
                           </g>

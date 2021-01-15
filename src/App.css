@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700');
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
 
 * {
   box-sizing: border-box;
@@ -23,6 +21,10 @@ a, a:hover, a:visited {
 
 sup { 
   font-size: x-small;
+}
+
+.hide {
+  display: none !important;
 }
 
 .Intro {
@@ -77,14 +79,16 @@ h2 {
   width: 125px;
   padding: 6px;
   font-size: 18px;
-  font-family: 'Roboto';
-  font-weight: 500;
-  letter-spacing: -0.2px;
+  font-weight: 600;
   text-align: center;
 }
 
 .btn-intro, .btn-intro:visited {
-  color: rgb(59 151 232);
+  color: #5c6f80;
+}
+
+.btn-intro:hover {
+  opacity: 0.8;
 }
 
 header {
@@ -196,29 +200,30 @@ main {
   left: 0;
   position: fixed;
   z-index: 90;
-  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.modal label {
-  color: #4d6484;
+.modal-content {
+  position: relative;
 }
 
 .list-form {
   display: flex;
-  position: absolute;
-  z-index: 100;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
   width: calc(100vw - 40px);
   max-width: 450px;
   padding: 40px;
   background: #fff;
   border-radius: 15px;
   flex-direction: column;
-  font-family: 'Roboto', sans-serif;
-  color: #78b3fd;
+  color: #818ad8;;
+}
+
+.list-form label {
+  color: #4d6484;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .list-form input {
@@ -226,10 +231,8 @@ main {
   max-width: 300px;
   padding: 5px 0;
   font-size: 20px;
-  color: #78b3fd;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  letter-spacing: -0.2px;
+  color: #818ad8;
+  font-family: 'Nunito', sans-serif;
   margin-bottom: 20px;
 }
 
@@ -247,21 +250,27 @@ main {
 
 .list-form input[type="submit"] {
   border-bottom: none;
-  background: #bcc2ff;
+  background: #9ca5f3;
   color: #fff;
   border-radius: 50px;
   width: 110px;
   margin: 20px 0 0 0;
 }
 
+.list-form input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
 .list-form span {
-  font-weight: 500;
+  color: #4d6484;
+  font-weight: 600;
 }
 
 .list-form h3 {
   font-weight: 700;
   text-transform: uppercase;
   font-family: 'Nunito', sans-serif;
+  margin-top: 10px;
 }
 
 #estimated-min {
@@ -274,43 +283,52 @@ main {
   text-align: center;
   border-radius: 50px;
   position: absolute;
-  font-family: 'PT Sans', sans-serif;
   font-weight: 700;
   font-size: 30px;
   width: 32px;
   font-size: 25px;
+  cursor: pointer;
 }
 
-.add-btn {
+.btn > * {
+  pointer-events: none;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.list-wrapper .btn.add {
   top: 20px;
   right: -10px;
 }
 
-.add-btn, .cancel-btn {
+.list-wrapper .btn.add, .modal .btn.close {
   position: absolute;
   width: 25px;
+  background: transparent;
 }
 
-.cancel-btn {
+.modal .btn.close {
   top: 20px;
   right: 20px;
 }
 
-/* Time on Main Page */
-.time-wrapper {
+/* Sidebar */
+.sidebar {
   color: #fff;
   width: 84%;
   font-size: 30px;
   margin: 0 auto;
 }
 
-.time-wrapper svg {
+.sidebar .clock svg {
   margin-right: 10px;
   width: 55px;
   height: 55px;
 }
 
-.start-time, .end-time {
+.clock {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -320,18 +338,25 @@ main {
   justify-content: start;
 }
 
-.start-time {
-  color: #85e4b1;
+.clock {
+  color: #6dd8b1;
   padding-top: 20px;
 }
 
-.end-time {
-  color: #FF8A8A;
+.clock.red {
+  color: #ee7a7a;
+}
+
+.clock.red .fill0 {
+  fill: #e54040;
+}
+
+.clock.red .fill1 {
+  fill: #FF8A8A;
 }
 
 .time-title {
   font-size: 15px;
-  font-weight: 400;
 }
 
 .time-input {
@@ -425,9 +450,9 @@ input[type="number"] {
 }
 
 .select .option-current:hover {
-  border-color: #62d1e4;
   cursor: pointer;
-  background: rgba(92,231,255,0.1);
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
 }
 
 .select .option-current::after {
@@ -592,7 +617,7 @@ input[type="number"] {
     height: 15px;
   }
 
-  .time-wrapper {
+  .sidebar {
     width: 340px;
     height: 200px;
     margin: 0;
@@ -605,17 +630,17 @@ input[type="number"] {
     justify-content: center;
   }
 
-  .time-wrapper svg {
+  .sidebar .clock svg {
     margin-right: 10px;
     width: 75px;
     height: 75px;
   }
 
-  .start-time {
+  .clock.green {
     padding-top: 0;
   }
 
-  .start-time, .end-time {
+  .clock {
     justify-content: space-between;
     margin-bottom: 30px;
   }
@@ -629,7 +654,7 @@ input[type="number"] {
     font-size: 30px;
   }
 
-  .add-btn, .cancel-btn {
+  .list-wrapper .btn.add, .modal .btn.close {
     top: 20px;
     right: 20px;
     width: 35px;
@@ -646,7 +671,7 @@ input[type="number"] {
 }
 
 @media only screen and (min-width: 1024px) {
-  .time-wrapper {
+  .sidebar {
     width: 33vw; 
     max-width: 450px;
     height: 53vh;
