@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 input {
   outline: none;
   border: 0;
@@ -21,7 +26,8 @@ sup {
 }
 
 .Intro {
-  background: linear-gradient(#5bd3ff, #abcafd);
+  /* background: linear-gradient(#5bd3ff, #abcafd); */
+  background: linear-gradient(#57cdf9, #839cf5);
   color: rgba(255,255,255,0.9);
   min-height: 100vh;
   min-width: 100vw;
@@ -36,7 +42,7 @@ sup {
 .Intro h1 {
   display: inline-block;
   font-weight: 600;
-  color: rgba(0,0,0,0.3);
+  color: rgba(0,0,0,0.5);
 }
 
 .intro-bee {
@@ -46,11 +52,6 @@ sup {
 }
 
 .Main {
-  /* background: rgb(146,209,246); */
-  /* background: rgb(146,211,248);
-  background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(315deg, rgb(133,213,250) 0%, rgb(93,176,248) 100%); */
-  /* background: linear-gradient(315deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(50deg, #00A3E6 0%, #3FC7FF 100%); */
-  /* background: url(/clouds-bg.png) bottom -17% left 21%/ 114% no-repeat, linear-gradient(#9ae2fd, #a1c4fd); */
   background: url(/clouds-bg-cropped.png) center bottom no-repeat, linear-gradient(#9ae2fd, #a1c4fd);
   background-size: contain;
   color: #fff;
@@ -83,7 +84,7 @@ h2 {
 }
 
 .btn-intro, .btn-intro:visited {
-  color: rgb(148,205,251);
+  color: rgb(59 151 232);
 }
 
 header {
@@ -164,11 +165,6 @@ main {
   flex-basis: 60%;
   max-width: 60%;
 }
-
-/* .list-item div > :not(.list-item-desc) {
-  flex-basis: 10%;
-  max-width: 10%;
-} */
 
 .list-edit {
   width: 20.39px;
@@ -362,9 +358,6 @@ main {
   background-size: 11px;
 }
 
-/* IE 11*/
-.time-input select::-ms-expand { display: none; } 
-
 #time-divider {
   font-size: 32px;
   color: #fff;
@@ -415,6 +408,79 @@ input[type="number"] {
   cursor: move;
 }
 
+/* Select dropdown */
+.select {
+  position: relative;
+  font-size: 32px;
+}
+
+.select.active .options-wrapper {
+  max-height: 200px;
+}
+
+.select .option-current {
+  padding: 4px 19px 4px 6px;
+  min-height: 33px;
+  /* color: rgba(0,0,0,0.5); */
+}
+
+.select .option-current:hover {
+  border-color: #62d1e4;
+  cursor: pointer;
+  background: rgba(92,231,255,0.1);
+}
+
+.select .option-current::after {
+  content: '';
+  background: url(/arrows.png) no-repeat;
+  width: 10px;
+  height: 100%;
+  display: block;
+  position: absolute;
+  background-size: contain;
+  background-position: center;
+  right: 5px;
+  top: 0;
+}
+
+.select .options-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 5px;
+  z-index: 10;
+  background: rgba(68, 78, 86, .8);
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.select .options-wrapper:hover {
+  border-color: #62d1e4;
+}
+
+.select .options-wrapper  .options {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+  max-height: 190px;
+  overflow: auto;
+}
+
+.select .option {
+  padding: 4px 10px;
+}
+
+.select .option:hover {
+  cursor: pointer;
+  background: rgba(92,231,255,0.1);
+}
+
+.select .option.selected {
+  background: rgba(92,231,255,0.3);
+}
+
 @media only screen and (min-width: 544px) {
   h1 {
     font-size: 54px;
@@ -436,7 +502,7 @@ input[type="number"] {
     font-size: 19px;
   }
 
-  .time-input select, #time-divider {
+  #time-divider, .select {
     font-size: 40px;
   }
 
@@ -554,7 +620,7 @@ input[type="number"] {
     margin-bottom: 30px;
   }
 
-  .time-input select, #time-divider {
+  .time-input select, #time-divider, .select {
     font-size: 54px;
   }
 
@@ -567,6 +633,15 @@ input[type="number"] {
     top: 20px;
     right: 20px;
     width: 35px;
+  }
+
+  .select .option-current {
+    padding-right: 26px;
+    min-height: 33px;
+  }
+  
+  .select .option-current::after {
+    width: 15px;
   }
 }
 

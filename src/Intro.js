@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Main from './Main';
+import Select from './components/Select';
 
 class Intro extends Component {
   constructor(props) {
@@ -14,9 +15,39 @@ class Intro extends Component {
       }
     } 
     this.goToMain = this.goToMain.bind(this);
-    this.hrChange = this.hrChange.bind(this);
-    this.minChange = this.minChange.bind(this);
-    this.periodChange = this.periodChange.bind(this);
+    this.onHrChange = this.onHrChange.bind(this);
+    this.onMinChange = this.onMinChange.bind(this);
+    this.onPeriodChange = this.onPeriodChange.bind(this);
+
+    /* Select dropdown config */
+    this.hrSelect = {
+      defaultValue: '1',
+      options: []
+    };
+
+    for (var i = 0; i < 12; i++) {
+      this.hrSelect.options.push({
+        label: '' + Math.floor((i+1)/10) + ((i+1)%10),
+        value: i+1 + ''
+      });
+    }
+
+    this.minSelect = {
+      defaultValue: '0',
+      options: []
+    };
+
+    for (var j = 0; j < 60; j++) {
+      this.minSelect.options.push({
+        label: '' + Math.floor((j)/10) + ((j)%10),
+        value: j + ''
+      });
+    }
+
+    this.periodSelect = {
+      defaultValue: 'pm',
+      options: [{ value: 'am', label: 'AM'}, { value: 'pm', label: 'PM'}]
+    };
   }
 
   goToMain() {
@@ -25,49 +56,34 @@ class Intro extends Component {
     }));
   }
 
-  hrChange(event) {
+  onHrChange(value) {
     this.setState({
       timeInput: {
         ...this.state.timeInput,
-        hr: parseInt(event.target.value),
+        hr: parseInt(value),
       },
     });
   }
 
-  minChange(event) {
+  onMinChange(value) {
     this.setState({
       timeInput: {
         ...this.state.timeInput,
-        min: parseInt(event.target.value),
+        min: parseInt(value),
       },
     });
   }
 
-  periodChange(event) {
+  onPeriodChange(value) {
     this.setState({
       timeInput: {
         ...this.state.timeInput,
-        type: event.target.value,
+        type: value,
       },
     });
   }
 
   render() {
-    var hrOptions = []; // generate hr options for dropdown
-    for (var i = 0; i < 12; i++) {
-      hrOptions.push({
-        text: '' + Math.floor((i+1)/10) + ((i+1)%10),
-        value: i+1
-      });
-    }
-    
-    var minOptions = []; // generate min options for dropdown
-    for (var j = 0; j < 60; j++) {
-      minOptions.push({
-        text: '' + Math.floor((j)/10) + ((j)%10),
-        value: j
-      });
-    }
     return (
       <div>
         { this.state.navigate && <Main userTime={this.state.timeInput}/> /* navigate to main page */} 
@@ -103,24 +119,13 @@ class Intro extends Component {
             <h2>What time do you need to arrive by?</h2>
           </div>
           <div className="time-input">
-            <select name="hr" onChange={this.hrChange}>
-              { 
-                (hrOptions).map((opt) => <option key={opt.value} value={opt.value}>{opt.text}</option>)
-              }
-            </select>
+            <Select value={this.hrSelect.defaultValue} options={this.hrSelect.options} onChange={this.onHrChange} />
             <span id="time-divider">:</span>
-            <select name="min" onChange={this.minChange}>
-              { 
-                (minOptions).map((opt) => <option key={opt.value} value={opt.value}>{opt.text}</option>)
-              }
-            </select>
-            <select name="period" onChange={this.periodChange}>
-              <option value="PM">PM</option>
-              <option value="AM">AM</option>
-            </select>
+            <Select value={this.minSelect.defaultValue} options={this.minSelect.options} onChange={this.onMinChange} />
+            <Select value={this.periodSelect.defaultValue} options={this.periodSelect.options} onChange={this.onPeriodChange} />
           </div>
-          <a className="btn-intro clickable" onClick={this.goToMain}>Get Started</a>
-        </div> }   
+          <div className="btn-intro clickable" onClick={this.goToMain}>Get Started</div>
+        </div> }
       </div>
     );
   }

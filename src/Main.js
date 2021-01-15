@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './Header';
-import List from './List';
-import Clock from './Clock';
+import Header from './components/Header';
+import List from './components/List';
+import Clock from './components/Clock';
 
 class Main extends Component {
   constructor(props) {
