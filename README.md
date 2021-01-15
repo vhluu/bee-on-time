@@ -2,7 +2,7 @@
 
 Bee On Time is a web app that helps you determine what time you should start on your tasks in order to complete them by a certain time.
 
-beeontime.now.sh
+[beeontime.now.sh](https://beeontime.now.sh/)
 
 ## Development
 
