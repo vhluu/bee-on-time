@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,600,700');
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
 
 * {
   box-sizing: border-box;
@@ -81,14 +79,16 @@ h2 {
   width: 125px;
   padding: 6px;
   font-size: 18px;
-  font-family: 'Roboto';
-  font-weight: 500;
-  letter-spacing: -0.2px;
+  font-weight: 600;
   text-align: center;
 }
 
 .btn-intro, .btn-intro:visited {
-  color: #3b97e8;
+  color: #5c6f80;
+}
+
+.btn-intro:hover {
+  opacity: 0.8;
 }
 
 header {
@@ -209,10 +209,6 @@ main {
   position: relative;
 }
 
-.modal label {
-  color: #4d6484;
-}
-
 .list-form {
   display: flex;
   width: calc(100vw - 40px);
@@ -221,8 +217,13 @@ main {
   background: #fff;
   border-radius: 15px;
   flex-direction: column;
-  font-family: 'Roboto', sans-serif;
-  color: #78b3fd;
+  color: #818ad8;;
+}
+
+.list-form label {
+  color: #4d6484;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .list-form input {
@@ -230,10 +231,8 @@ main {
   max-width: 300px;
   padding: 5px 0;
   font-size: 20px;
-  color: #78b3fd;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  letter-spacing: -0.2px;
+  color: #818ad8;
+  font-family: 'Nunito', sans-serif;
   margin-bottom: 20px;
 }
 
@@ -251,21 +250,27 @@ main {
 
 .list-form input[type="submit"] {
   border-bottom: none;
-  background: #bcc2ff;
+  background: #9ca5f3;
   color: #fff;
   border-radius: 50px;
   width: 110px;
   margin: 20px 0 0 0;
 }
 
+.list-form input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
 .list-form span {
-  font-weight: 500;
+  color: #4d6484;
+  font-weight: 600;
 }
 
 .list-form h3 {
   font-weight: 700;
   text-transform: uppercase;
   font-family: 'Nunito', sans-serif;
+  margin-top: 10px;
 }
 
 #estimated-min {
@@ -278,7 +283,6 @@ main {
   text-align: center;
   border-radius: 50px;
   position: absolute;
-  font-family: 'PT Sans', sans-serif;
   font-weight: 700;
   font-size: 30px;
   width: 32px;
@@ -288,6 +292,10 @@ main {
 
 .btn > * {
   pointer-events: none;
+}
+
+.btn:hover {
+  opacity: 0.8;
 }
 
 .list-wrapper .btn.add {
@@ -331,12 +339,12 @@ main {
 }
 
 .clock {
-  color: #85e4b1;
+  color: #6dd8b1;
   padding-top: 20px;
 }
 
 .clock.red {
-  color: #FF8A8A;
+  color: #ee7a7a;
 }
 
 .clock.red .fill0 {
@@ -349,7 +357,6 @@ main {
 
 .time-title {
   font-size: 15px;
-  font-weight: 400;
 }
 
 .time-input {
@@ -443,9 +450,9 @@ input[type="number"] {
 }
 
 .select .option-current:hover {
-  border-color: #62d1e4;
   cursor: pointer;
-  background: rgba(92,231,255,0.1);
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
 }
 
 .select .option-current::after {
