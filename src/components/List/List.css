@@ -1,0 +1,137 @@
+
+.list {
+  color: #3FC7FF;
+  padding: 23px 0 100px 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  width: 84%;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* List Header */
+.list-header {
+  display: flex;
+  font-weight: 700;
+  font-size: 13px;
+  color: #b0bec5;
+  text-transform: uppercase;
+  font-family: 'Nunito', sans-serif;
+  color: rgb(163,202,251);
+  color: #304A6E;
+}
+
+.list-header > div:first-child {
+  flex-basis: 60%;
+}
+
+.list ul {
+  padding: 20px 0 0 5px;
+}
+
+/* List Item */
+.list-item {
+  font-size: 17px;
+  color: #304a6ea3;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.list-item > div {
+  display: flex; 
+}
+
+.list-item-desc {
+  flex-basis: 60%;
+  max-width: 60%;
+}
+
+.list-item .edit {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.list-item .edit svg {
+  width: 20.39px;
+  height: 18px;
+}
+
+.list-item .delete svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* List Controls */
+.list-time-controls {
+  display: flex;
+  justify-content: space-between;
+  flex-basis: 40%;
+}
+
+.list-controls {
+  display: flex;
+}
+
+/* Add Button */
+.list-wrapper .add {
+  top: 20px;
+  right: -10px;
+  position: absolute;
+  background: transparent;
+}
+
+.list-wrapper .add svg {
+  width: 25px;
+}
+
+@media only screen and (min-width: 768px) {
+  .list {
+    border: 0;
+    padding: 55px 25px;
+    width: 418px;
+    max-width: 418px;
+    margin: 0;
+    height: 500px;
+  }
+
+  /* List Item */
+  .list-item {
+    font-size: 19px;
+  }
+
+  /* List Header */
+  .list-header {
+    font-size: 16px;
+  }
+
+  .list-item .edit {
+    margin-right: 10px;
+  }
+
+  .list-item .edit svg {
+    width: 28.33px;
+    height: 25px;
+  }
+  
+  .list-item .delete svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* Add Button */
+  .list-wrapper .add {
+    top: 20px;
+    right: 20px;
+  }
+  
+  .list-wrapper .add svg {
+    width: 35px;
+  }
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .list {
+    width: 41vw;
+    max-width: 600px;
+  }
+}

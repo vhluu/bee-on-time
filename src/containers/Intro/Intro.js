@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-import Main from './Main';
-import Select from './components/Select';
+import Main from '../Main/Main';
+import Select from '../../components/Select/Select';
+import './Intro.css';
 
 class Intro extends Component {
   constructor(props) {

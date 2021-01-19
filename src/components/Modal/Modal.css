@@ -1,0 +1,30 @@
+.modal {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(102,102,102,0.4);
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 90;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+}
+
+.modal .btn.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 25px;
+  background: transparent;
+}
+
+@media only screen and (min-width: 768px) {
+  .modal .btn.close {
+    width: 35px;
+  }
+}

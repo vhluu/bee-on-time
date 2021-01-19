@@ -1,0 +1,97 @@
+.select {
+  position: relative;
+  font-size: 32px;
+}
+
+/* Options Wrapper */
+.select .options-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 5px;
+  z-index: 10;
+  background: rgba(68, 78, 86, .8);
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.select .options-wrapper:hover {
+  border-color: #62d1e4;
+}
+
+/* Options */
+.select .options {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+  max-height: 190px;
+  overflow: auto;
+}
+
+/* Option */
+.select .option {
+  padding: 4px 10px;
+}
+
+.select .option:hover {
+  cursor: pointer;
+  background: rgba(92,231,255,0.1);
+}
+
+.select .option.selected {
+  background: rgba(92,231,255,0.3);
+}
+
+/* Current Option */
+.select .option-current {
+  padding: 4px 19px 4px 6px;
+  min-height: 33px;
+}
+
+.select .option-current:hover {
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
+}
+
+.select .option-current::after {
+  content: '';
+  background: url(/arrows.png) no-repeat;
+  width: 10px;
+  height: 100%;
+  display: block;
+  position: absolute;
+  background-size: contain;
+  background-position: center;
+  right: 5px;
+  top: 0;
+}
+
+/* Active Select */
+.select.active .options-wrapper {
+  max-height: 200px;
+}
+
+@media only screen and (min-width: 544px) {
+  .select {
+    font-size: 40px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .select {
+    font-size: 54px;
+  }
+
+  /* Current Option */
+  .select .option-current {
+    padding-right: 26px;
+    min-height: 33px;
+  }
+  
+  .select .option-current::after {
+    width: 15px;
+  }
+}

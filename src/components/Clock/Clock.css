@@ -1,0 +1,47 @@
+
+.clock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 600;
+  color: #6dd8b1;
+}
+
+.clock + .clock {
+  margin-top: 20px;
+}
+
+.clock svg {
+  margin-right: 10px;
+  width: 55px;
+  height: 55px;
+}
+
+.clock.red {
+  color: #ee7a7a;
+}
+
+.clock.red .fill0 {
+  fill: #e54040;
+}
+
+.clock.red .fill1 {
+  fill: #FF8A8A;
+}
+
+.time-title {
+  font-size: 15px;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .clock + .clock {
+    margin-top: 50px;
+  }
+
+  .clock svg {
+    margin-right: 10px;
+    width: 75px;
+    height: 75px;
+  }
+}
