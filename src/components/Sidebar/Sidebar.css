@@ -1,0 +1,30 @@
+.sidebar {
+  color: #fff;
+  width: 84%;
+  font-size: 30px;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .sidebar {
+    width: 340px;
+    height: 200px;
+    margin: 0;
+    max-width: 340px;
+    height: 500px;
+    font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .sidebar {
+    width: 33vw; 
+    max-width: 450px;
+    height: 53vh;
+    min-height: 500px;
+  }
+}

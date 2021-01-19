@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from './Button';
+import './TaskForm.css';
 
 class TaskForm extends Component {
   constructor(props) {
@@ -72,7 +72,7 @@ class TaskForm extends Component {
   render() {
     const { task, hr, min } = this.state;
     return (
-      <form className="list-form" onSubmit={this.handleSubmit}>
+      <form className="task-form" onSubmit={this.handleSubmit}>
         <h3>Add a new task</h3>
         <label htmlFor="task">What do you need to do?</label>
         <input type="text" name="task" required maxLength="50" placeholder="Pack lunch" value={task} onChange={this.handleTaskChange} />

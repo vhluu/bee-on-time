@@ -1,0 +1,16 @@
+header {
+  padding: 20px;
+  position: absolute;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text a {
+  font-size: 30px;
+  font-family: 'Nunito', sans-serif;
+  margin-left: 20px;
+  color: rgba(0,0,0,0.3) !important;
+}

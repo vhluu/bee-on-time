@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Button from './Button';
+import Button from '../Button/Button';
+import './Modal.css';
 
 class Modal extends Component {
   constructor(props) {

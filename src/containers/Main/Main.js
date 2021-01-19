@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
-import Header from './components/Header';
-import List from './components/List';
-import Clock from './components/Clock';
-import Sidebar from './components/Sidebar';
+import Header from '../../components/Header/Header';
+import List from '../../components/List/List';
+import Clock from '../../components/Clock/Clock';
+import Sidebar from '../../components/Sidebar/Sidebar';
+
+import './Main.css';
 
 class Main extends Component {
   constructor(props) {
@@ -113,8 +114,10 @@ class Main extends Component {
                 <span>Trying to be on time?</span>
                 <br/>Tell us what you need to do &amp; we'll help you figure out what time you should start get started
               </div>
-              <Clock time={start} title="Start" />
-              <Clock time={userTime} title="End" color="red" />
+              <div class="clock-wrapper">
+                <Clock time={start} title="Start" />
+                <Clock time={userTime} title="End" color="red" />
+              </div>
             </Sidebar>
             <List updateTime={this.calculateTime}/>
           </div>
