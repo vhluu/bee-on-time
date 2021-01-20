@@ -17,6 +17,9 @@ class TaskForm extends Component {
     this.handleTaskChange = this.handleTaskChange.bind(this);
     this.handleHrChange = this.handleHrChange.bind(this);
     this.handleMinChange = this.handleMinChange.bind(this);
+    this.setFocus = this.setFocus.bind(this);
+
+    this.inputRef = React.createRef();
   }
 
   /* Detect when form should be prefilled */
@@ -69,13 +72,18 @@ class TaskForm extends Component {
     this.setState({ min: event.target.value });
   }
 
+  /* Focuses on the first field */
+  setFocus() {
+    this.inputRef.current.focus();
+  }
+
   render() {
     const { task, hr, min } = this.state;
     return (
       <form className="task-form" onSubmit={this.handleSubmit}>
         <h3>Add a new task</h3>
         <label htmlFor="task">What do you need to do?</label>
-        <input type="text" name="task" required maxLength="50" placeholder="Pack lunch" value={task} onChange={this.handleTaskChange} />
+        <input type="text" name="task" required maxLength="50" placeholder="Pack lunch" value={task} onChange={this.handleTaskChange} ref={this.inputRef} />
         <label>How long will it take?</label>
         <div>
           <input type="number" name="estimated-hrs" required min="0" placeholder="0" value={hr} onChange={this.handleHrChange} /> 

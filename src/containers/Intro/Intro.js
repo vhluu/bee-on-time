@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Main from '../Main/Main';
 import Select from '../../components/Select/Select';
+import Button from '../../components/Button/Button';
 import './Intro.css';
 
 class Intro extends Component {
@@ -124,7 +125,7 @@ class Intro extends Component {
             <Select value={this.minSelect.defaultValue} options={this.minSelect.options} onChange={this.onMinChange} />
             <Select value={this.periodSelect.defaultValue} options={this.periodSelect.options} onChange={this.onPeriodChange} />
           </div>
-          <div className="btn-intro clickable" onClick={this.goToMain}>Get Started</div>
+          <Button btnType="btn-intro" clicked={this.goToMain}>Get Started</Button>
         </div> }
       </div>
     );
