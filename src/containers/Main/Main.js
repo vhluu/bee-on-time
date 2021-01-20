@@ -112,9 +112,9 @@ class Main extends Component {
             <Sidebar>
               <div className="main-desc">
                 <span>Trying to be on time?</span>
-                <br/>Tell us what you need to do &amp; we'll help you figure out what time you should start get started
+                <br/>Tell us what you need to do &amp; we'll help you figure out what time you should start
               </div>
-              <div class="clock-wrapper">
+              <div className="clock-wrapper">
                 <Clock time={start} title="Start" />
                 <Clock time={userTime} title="End" color="red" />
               </div>
