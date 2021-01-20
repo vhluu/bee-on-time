@@ -102,7 +102,6 @@ class List extends Component {
         listItems: (state.listItems).concat([{ id: this.state.id + 1,  task, hr, min }]),
         id: this.state.id + 1
       })), () => { // callback function
-        // this.props.updateList(this.state.listItems);
         this.props.updateTime({ hr, min });
       });
     } else if (formEvent === 'edit') { // edit current list item
@@ -114,15 +113,15 @@ class List extends Component {
             min: currList[i].min
           };
           currList[i] = { id: currList[i].id, task, hr, min};
+
           this.setState({ listItem: currList }, () => { 
-            // this.props.updateList(currList)
             this.props.updateTime({ hr, min }, oldTime);
           });
           break;
         }
       }
     }
-
+    
     this.closeModal(); // close modal and clear form
   }
 
