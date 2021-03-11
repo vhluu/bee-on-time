@@ -101,6 +101,13 @@ class Select extends Component {
 
     switch (e.keyCode) {
       case SPACEBAR_KEY:
+        if (!this.state.open) {
+          this.openSelect();
+        } else {
+          this.selectItem();
+          this.closeSelect();
+        }
+      break;
       case ENTER_KEY:
         this.selectItem();
         this.closeSelect();
