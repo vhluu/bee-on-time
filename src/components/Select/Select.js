@@ -153,7 +153,7 @@ class Select extends Component {
     }
 
     this.setState({ focusIndex: currIndex });
-    this.dropdownRef.current.querySelector(`[data-index="${currIndex}"]`).scrollIntoView(); // makes sure focused item is visible
+    this.dropdownRef.current.querySelector(`[data-index="${currIndex}"]`).scrollIntoView(false); // makes sure focused item is visible
   }
 
   /* Handles value select on key press */
